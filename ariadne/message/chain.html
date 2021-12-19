@@ -188,9 +188,7 @@
 <span class="p">)</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">pydantic.typing</span> <span class="kn">import</span> <span class="n">ReprArgs</span>
-
-    <span class="kn">from</span> <span class="nn">..typing</span> <span class="kn">import</span> <span class="n">MessageIndex</span><span class="p">,</span> <span class="n">Slice</span>
+    <span class="kn">from</span> <span class="nn">..typing</span> <span class="kn">import</span> <span class="n">MessageIndex</span><span class="p">,</span> <span class="n">ReprArgs</span><span class="p">,</span> <span class="n">Slice</span>
 
 
 <span class="n">Element_T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Element_T&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Element</span><span class="p">)</span>
@@ -766,7 +764,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__root__</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span>
                 <span class="p">(</span><span class="n">include</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">include</span><span class="p">))</span>
-                <span class="ow">or</span> <span class="p">(</span><span class="n">exclude</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">exclude</span><span class="p">))</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">exclude</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">exclude</span><span class="p">))</span>
                 <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">include</span> <span class="ow">or</span> <span class="n">exclude</span><span class="p">)</span>
             <span class="p">):</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">Plain</span><span class="p">):</span>
@@ -1516,7 +1514,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__root__</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span>
                 <span class="p">(</span><span class="n">include</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">include</span><span class="p">))</span>
-                <span class="ow">or</span> <span class="p">(</span><span class="n">exclude</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">exclude</span><span class="p">))</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">exclude</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">exclude</span><span class="p">))</span>
                 <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">include</span> <span class="ow">or</span> <span class="n">exclude</span><span class="p">)</span>
             <span class="p">):</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">Plain</span><span class="p">):</span>
@@ -2869,7 +2867,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__root__</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span>
                 <span class="p">(</span><span class="n">include</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">include</span><span class="p">))</span>
-                <span class="ow">or</span> <span class="p">(</span><span class="n">exclude</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">exclude</span><span class="p">))</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">exclude</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">exclude</span><span class="p">))</span>
                 <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">include</span> <span class="ow">or</span> <span class="n">exclude</span><span class="p">)</span>
             <span class="p">):</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">Plain</span><span class="p">):</span>
