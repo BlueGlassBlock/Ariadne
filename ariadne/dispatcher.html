@@ -43,13 +43,37 @@
 
             </li>
             <li>
-                    <a class="class" href="#ApplicationDispatcher">ApplicationDispatcher</a>
+                    <a class="class" href="#ContextDispatcher">ContextDispatcher</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="function" href="#ApplicationDispatcher.__init__">ApplicationDispatcher</a>
+                                <a class="function" href="#ContextDispatcher.__init__">ContextDispatcher</a>
                         </li>
                         <li>
-                                <a class="function" href="#ApplicationDispatcher.catch">catch</a>
+                                <a class="function" href="#ContextDispatcher.catch">catch</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#ContextLC">ContextLC</a>
+                            <ul class="memberlist">
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#MiddlewareDispatcher">MiddlewareDispatcher</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#MiddlewareDispatcher.__init__">MiddlewareDispatcher</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MiddlewareDispatcher.catch">catch</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MiddlewareDispatcher.beforeExecution">beforeExecution</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MiddlewareDispatcher.afterExecution">afterExecution</a>
                         </li>
                 </ul>
 
@@ -84,38 +108,98 @@
                     <h1 class="modulename">
 <a href="./../ariadne.html">ariadne</a><wbr>.dispatcher    </h1>
 
-                
+                        <div class="docstring"><p>Ariadne 内置的 Dispatcher</p>
+</div>
+
                         <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+            <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;Ariadne 内置的 Dispatcher&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">ContextManager</span><span class="p">,</span> <span class="n">TypedDict</span>
 
 <span class="kn">from</span> <span class="nn">graia.broadcast.entities.dispatcher</span> <span class="kn">import</span> <span class="n">BaseDispatcher</span>
+<span class="kn">from</span> <span class="nn">graia.broadcast.entities.event</span> <span class="kn">import</span> <span class="n">Dispatchable</span>
 <span class="kn">from</span> <span class="nn">graia.broadcast.interfaces.dispatcher</span> <span class="kn">import</span> <span class="n">DispatcherInterface</span>
 
-<span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="n">ariadne_ctx</span>
-
-<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">.event.message</span> <span class="kn">import</span> <span class="n">MessageEvent</span>
-
+<span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">adapter_ctx</span><span class="p">,</span>
+    <span class="n">ariadne_ctx</span><span class="p">,</span>
+    <span class="n">broadcast_ctx</span><span class="p">,</span>
+    <span class="n">enter_context</span><span class="p">,</span>
+    <span class="n">event_loop_ctx</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">.message.chain</span> <span class="kn">import</span> <span class="n">MessageChain</span>
 <span class="kn">from</span> <span class="nn">.message.element</span> <span class="kn">import</span> <span class="n">Source</span>
 
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.app</span> <span class="kn">import</span> <span class="n">Ariadne</span>
+    <span class="kn">from</span> <span class="nn">.event.message</span> <span class="kn">import</span> <span class="n">MessageEvent</span>
+
 
 <span class="k">class</span> <span class="nc">MessageChainDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;从 MessageEvent 提取 MessageChain 的 Dispatcher&quot;&quot;&quot;</span>
+
     <span class="nd">@staticmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MessageEvent&quot;</span><span class="p">]):</span>
         <span class="k">if</span> <span class="n">interface</span><span class="o">.</span><span class="n">annotation</span> <span class="ow">is</span> <span class="n">MessageChain</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">interface</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">messageChain</span>
 
 
-<span class="k">class</span> <span class="nc">ApplicationDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ContextDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;提取上下文的 Dispatcher&quot;&quot;&quot;</span>
+
     <span class="nd">@staticmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Ariadne&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">AbstractEventLoop</span>
+
+        <span class="kn">from</span> <span class="nn">graia.broadcast</span> <span class="kn">import</span> <span class="n">Broadcast</span>
+
+        <span class="kn">from</span> <span class="nn">.adapter</span> <span class="kn">import</span> <span class="n">Adapter</span>
+        <span class="kn">from</span> <span class="nn">.app</span> <span class="kn">import</span> <span class="n">Ariadne</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Ariadne</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">ariadne_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Broadcast</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">broadcast_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">AbstractEventLoop</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">event_loop_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Adapter</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">adapter_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Dispatchable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">interface</span><span class="o">.</span><span class="n">event</span>
+
+
+<span class="k">class</span> <span class="nc">ContextLC</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;local storage 表示&quot;&quot;&quot;</span>
+
+    <span class="n">__CONTEXT_MANAGER__</span><span class="p">:</span> <span class="n">ContextManager</span>
+
+
+<span class="k">class</span> <span class="nc">MiddlewareDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;分发 Ariadne 等基础参数的 Dispatcher&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span> <span class="o">=</span> <span class="n">app</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">):</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">ContextDispatcher</span><span class="o">.</span><span class="n">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">beforeExecution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;进入事件分发上下文&quot;&quot;&quot;</span>
+        <span class="n">lc</span><span class="p">:</span> <span class="n">ContextLC</span> <span class="o">=</span> <span class="n">interface</span><span class="o">.</span><span class="n">execution_contexts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">local_storage</span>
+        <span class="n">lc</span><span class="p">[</span><span class="s2">&quot;__CONTEXT_MANAGER__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enter_context</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="n">interface</span><span class="o">.</span><span class="n">event</span><span class="p">)</span>
+        <span class="n">lc</span><span class="p">[</span><span class="s2">&quot;__CONTEXT_MANAGER__&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">afterExecution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;退出事件分发上下文&quot;&quot;&quot;</span>
+        <span class="n">lc</span><span class="p">:</span> <span class="n">ContextLC</span> <span class="o">=</span> <span class="n">interface</span><span class="o">.</span><span class="n">execution_contexts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">local_storage</span>
+        <span class="n">lc</span><span class="p">[</span><span class="s2">&quot;__CONTEXT_MANAGER__&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">SourceDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;提取 MessageEvent 消息链 Source 元素的 Dispatcher&quot;&quot;&quot;</span>
+
     <span class="nd">@staticmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MessageEvent&quot;</span><span class="p">]):</span>
         <span class="k">if</span> <span class="n">interface</span><span class="o">.</span><span class="n">annotation</span> <span class="ow">is</span> <span class="n">Source</span><span class="p">:</span>
@@ -137,6 +221,8 @@
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">MessageChainDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;从 MessageEvent 提取 MessageChain 的 Dispatcher&quot;&quot;&quot;</span>
+
     <span class="nd">@staticmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MessageEvent&quot;</span><span class="p">]):</span>
         <span class="k">if</span> <span class="n">interface</span><span class="o">.</span><span class="n">annotation</span> <span class="ow">is</span> <span class="n">MessageChain</span><span class="p">:</span>
@@ -145,7 +231,7 @@
 
         </details>
 
-            <div class="docstring"><p>所有非单函数型 Dispatcher 的基类, 用于为参数解析提供可扩展的支持.</p>
+            <div class="docstring"><p>从 MessageEvent 提取 MessageChain 的 Dispatcher</p>
 </div>
 
 
@@ -210,43 +296,62 @@
                                 </dl>
                             </div>
                 </section>
-                <section id="ApplicationDispatcher">
+                <section id="ContextDispatcher">
                                 <div class="attr class">
-        <a class="headerlink" href="#ApplicationDispatcher">#&nbsp;&nbsp</a>
+        <a class="headerlink" href="#ContextDispatcher">#&nbsp;&nbsp</a>
 
         
         <span class="def">class</span>
-        <span class="name">ApplicationDispatcher</span><wbr>(<span class="base">graia.broadcast.entities.dispatcher.BaseDispatcher</span>):
+        <span class="name">ContextDispatcher</span><wbr>(<span class="base">graia.broadcast.entities.dispatcher.BaseDispatcher</span>):
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">ApplicationDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+            <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">ContextDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;提取上下文的 Dispatcher&quot;&quot;&quot;</span>
+
     <span class="nd">@staticmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Ariadne&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">AbstractEventLoop</span>
+
+        <span class="kn">from</span> <span class="nn">graia.broadcast</span> <span class="kn">import</span> <span class="n">Broadcast</span>
+
+        <span class="kn">from</span> <span class="nn">.adapter</span> <span class="kn">import</span> <span class="n">Adapter</span>
+        <span class="kn">from</span> <span class="nn">.app</span> <span class="kn">import</span> <span class="n">Ariadne</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Ariadne</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">ariadne_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Broadcast</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">broadcast_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">AbstractEventLoop</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">event_loop_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Adapter</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">adapter_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Dispatchable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">interface</span><span class="o">.</span><span class="n">event</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>所有非单函数型 Dispatcher 的基类, 用于为参数解析提供可扩展的支持.</p>
+            <div class="docstring"><p>提取上下文的 Dispatcher</p>
 </div>
 
 
-                            <div id="ApplicationDispatcher.__init__" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#ApplicationDispatcher.__init__">#&nbsp;&nbsp</a>
+                            <div id="ContextDispatcher.__init__" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#ContextDispatcher.__init__">#&nbsp;&nbsp</a>
 
         
-            <span class="name">ApplicationDispatcher</span><span class="signature">()</span>
+            <span class="name">ContextDispatcher</span><span class="signature">()</span>
     </div>
 
         
     
 
                             </div>
-                            <div id="ApplicationDispatcher.catch" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#ApplicationDispatcher.catch">#&nbsp;&nbsp</a>
+                            <div id="ContextDispatcher.catch" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#ContextDispatcher.catch">#&nbsp;&nbsp</a>
 
                 <div class="decorator">@staticmethod</div>
 
@@ -258,8 +363,25 @@
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span>    <span class="nd">@staticmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Ariadne&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">AbstractEventLoop</span>
+
+        <span class="kn">from</span> <span class="nn">graia.broadcast</span> <span class="kn">import</span> <span class="n">Broadcast</span>
+
+        <span class="kn">from</span> <span class="nn">.adapter</span> <span class="kn">import</span> <span class="n">Adapter</span>
+        <span class="kn">from</span> <span class="nn">.app</span> <span class="kn">import</span> <span class="n">Ariadne</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Ariadne</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">ariadne_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Broadcast</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">broadcast_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">AbstractEventLoop</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">event_loop_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Adapter</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">adapter_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Dispatchable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">interface</span><span class="o">.</span><span class="n">event</span>
 </pre></div>
 
         </details>
@@ -284,10 +406,210 @@
                                 <h5>Inherited Members</h5>
                                 <dl>
                                     <div><dt>graia.broadcast.entities.dispatcher.BaseDispatcher</dt>
-                                <dd id="ApplicationDispatcher.mixin" class="variable">mixin</dd>
-                <dd id="ApplicationDispatcher.beforeExecution" class="variable">beforeExecution</dd>
-                <dd id="ApplicationDispatcher.afterDispatch" class="variable">afterDispatch</dd>
-                <dd id="ApplicationDispatcher.afterExecution" class="variable">afterExecution</dd>
+                                <dd id="ContextDispatcher.mixin" class="variable">mixin</dd>
+                <dd id="ContextDispatcher.beforeExecution" class="variable">beforeExecution</dd>
+                <dd id="ContextDispatcher.afterDispatch" class="variable">afterDispatch</dd>
+                <dd id="ContextDispatcher.afterExecution" class="variable">afterExecution</dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="ContextLC">
+                                <div class="attr class">
+        <a class="headerlink" href="#ContextLC">#&nbsp;&nbsp</a>
+
+        
+        <span class="def">class</span>
+        <span class="name">ContextLC</span><wbr>(<span class="base">typing.TypedDict</span>):
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">ContextLC</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;local storage 表示&quot;&quot;&quot;</span>
+
+    <span class="n">__CONTEXT_MANAGER__</span><span class="p">:</span> <span class="n">ContextManager</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>local storage 表示</p>
+</div>
+
+
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>builtins.dict</dt>
+                                <dd id="ContextLC.__init__" class="class">dict</dd>
+                <dd id="ContextLC.get" class="function">get</dd>
+                <dd id="ContextLC.setdefault" class="function">setdefault</dd>
+                <dd id="ContextLC.pop" class="function">pop</dd>
+                <dd id="ContextLC.popitem" class="function">popitem</dd>
+                <dd id="ContextLC.keys" class="function">keys</dd>
+                <dd id="ContextLC.items" class="function">items</dd>
+                <dd id="ContextLC.values" class="function">values</dd>
+                <dd id="ContextLC.update" class="function">update</dd>
+                <dd id="ContextLC.fromkeys" class="function">fromkeys</dd>
+                <dd id="ContextLC.clear" class="function">clear</dd>
+                <dd id="ContextLC.copy" class="function">copy</dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="MiddlewareDispatcher">
+                                <div class="attr class">
+        <a class="headerlink" href="#MiddlewareDispatcher">#&nbsp;&nbsp</a>
+
+        
+        <span class="def">class</span>
+        <span class="name">MiddlewareDispatcher</span><wbr>(<span class="base">graia.broadcast.entities.dispatcher.BaseDispatcher</span>):
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">MiddlewareDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;分发 Ariadne 等基础参数的 Dispatcher&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span> <span class="o">=</span> <span class="n">app</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">):</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">ContextDispatcher</span><span class="o">.</span><span class="n">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">beforeExecution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;进入事件分发上下文&quot;&quot;&quot;</span>
+        <span class="n">lc</span><span class="p">:</span> <span class="n">ContextLC</span> <span class="o">=</span> <span class="n">interface</span><span class="o">.</span><span class="n">execution_contexts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">local_storage</span>
+        <span class="n">lc</span><span class="p">[</span><span class="s2">&quot;__CONTEXT_MANAGER__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enter_context</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="n">interface</span><span class="o">.</span><span class="n">event</span><span class="p">)</span>
+        <span class="n">lc</span><span class="p">[</span><span class="s2">&quot;__CONTEXT_MANAGER__&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">afterExecution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;退出事件分发上下文&quot;&quot;&quot;</span>
+        <span class="n">lc</span><span class="p">:</span> <span class="n">ContextLC</span> <span class="o">=</span> <span class="n">interface</span><span class="o">.</span><span class="n">execution_contexts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">local_storage</span>
+        <span class="n">lc</span><span class="p">[</span><span class="s2">&quot;__CONTEXT_MANAGER__&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>分发 Ariadne 等基础参数的 Dispatcher</p>
+</div>
+
+
+                            <div id="MiddlewareDispatcher.__init__" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MiddlewareDispatcher.__init__">#&nbsp;&nbsp</a>
+
+        
+            <span class="name">MiddlewareDispatcher</span><span class="signature">(app: <a href="app.html#Ariadne">ariadne.app.Ariadne</a>)</span>
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span> <span class="o">=</span> <span class="n">app</span>
+</pre></div>
+
+        </details>
+
+    
+
+                            </div>
+                            <div id="MiddlewareDispatcher.catch" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MiddlewareDispatcher.catch">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">async def</span>
+            <span class="name">catch</span><span class="signature">(
+    self,
+    interface: graia.broadcast.interfaces.dispatcher.DispatcherInterface
+)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">):</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">ContextDispatcher</span><span class="o">.</span><span class="n">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>该方法可以是 <code>staticmethod</code>, <code>classmethod</code> 亦或是普通的方法/函数.
+唯一的要求是 <code>Dispatcher.catch</code> 获取到的必须为一可调用异步 Callable.</p>
+
+<h6 id="args">Args</h6>
+
+<ul>
+<li><strong>interface (DispatcherInterface):</strong>  <code>Dispatcher</code> 服务的主要对象, 可以从其中获取以下信息:
+<ul>
+<li>当前解析中的参数的信息;</li>
+<li>当前执行的信息, 比如正在处理的事件, <code>Listener</code>/<code>ExecTarget</code> etc.;</li>
+</ul></li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="MiddlewareDispatcher.beforeExecution" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MiddlewareDispatcher.beforeExecution">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">async def</span>
+            <span class="name">beforeExecution</span><span class="signature">(
+    self,
+    interface: graia.broadcast.interfaces.dispatcher.DispatcherInterface
+)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">beforeExecution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;进入事件分发上下文&quot;&quot;&quot;</span>
+        <span class="n">lc</span><span class="p">:</span> <span class="n">ContextLC</span> <span class="o">=</span> <span class="n">interface</span><span class="o">.</span><span class="n">execution_contexts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">local_storage</span>
+        <span class="n">lc</span><span class="p">[</span><span class="s2">&quot;__CONTEXT_MANAGER__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enter_context</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="n">interface</span><span class="o">.</span><span class="n">event</span><span class="p">)</span>
+        <span class="n">lc</span><span class="p">[</span><span class="s2">&quot;__CONTEXT_MANAGER__&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>进入事件分发上下文</p>
+</div>
+
+
+                            </div>
+                            <div id="MiddlewareDispatcher.afterExecution" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MiddlewareDispatcher.afterExecution">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">async def</span>
+            <span class="name">afterExecution</span><span class="signature">(
+    self,
+    interface: graia.broadcast.interfaces.dispatcher.DispatcherInterface,
+    *_
+)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">afterExecution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;退出事件分发上下文&quot;&quot;&quot;</span>
+        <span class="n">lc</span><span class="p">:</span> <span class="n">ContextLC</span> <span class="o">=</span> <span class="n">interface</span><span class="o">.</span><span class="n">execution_contexts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">local_storage</span>
+        <span class="n">lc</span><span class="p">[</span><span class="s2">&quot;__CONTEXT_MANAGER__&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>退出事件分发上下文</p>
+</div>
+
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>graia.broadcast.entities.dispatcher.BaseDispatcher</dt>
+                                <dd id="MiddlewareDispatcher.mixin" class="variable">mixin</dd>
+                <dd id="MiddlewareDispatcher.afterDispatch" class="variable">afterDispatch</dd>
 
             </div>
                                 </dl>
@@ -305,6 +627,8 @@
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">SourceDispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;提取 MessageEvent 消息链 Source 元素的 Dispatcher&quot;&quot;&quot;</span>
+
     <span class="nd">@staticmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MessageEvent&quot;</span><span class="p">]):</span>
         <span class="k">if</span> <span class="n">interface</span><span class="o">.</span><span class="n">annotation</span> <span class="ow">is</span> <span class="n">Source</span><span class="p">:</span>
@@ -313,7 +637,7 @@
 
         </details>
 
-            <div class="docstring"><p>所有非单函数型 Dispatcher 的基类, 用于为参数解析提供可扩展的支持.</p>
+            <div class="docstring"><p>提取 MessageEvent 消息链 Source 元素的 Dispatcher</p>
 </div>
 
 

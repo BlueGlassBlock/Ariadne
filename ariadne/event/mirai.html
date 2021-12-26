@@ -232,13 +232,7 @@
                     <a class="class" href="#NudgeEvent">NudgeEvent</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="function" href="#NudgeEvent.subject_handle_friend_id">subject_handle_friend_id</a>
-                        </li>
-                        <li>
-                                <a class="function" href="#NudgeEvent.subject_handle_group_id">subject_handle_group_id</a>
-                        </li>
-                        <li>
-                                <a class="function" href="#NudgeEvent.subject_handle_context_type">subject_handle_context_type</a>
+                                <a class="function" href="#NudgeEvent.__init__">NudgeEvent</a>
                         </li>
                 </ul>
 
@@ -648,20 +642,22 @@
                     <h1 class="modulename">
 <a href="./../../ariadne.html">ariadne</a><wbr>.<a href="./../event.html">event</a><wbr>.mirai    </h1>
 
-                
+                        <div class="docstring"><p>Mirai 的各种事件</p>
+</div>
+
                         <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+            <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;Mirai 的各种事件&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">graia.broadcast.entities.dispatcher</span> <span class="kn">import</span> <span class="n">BaseDispatcher</span>
 <span class="kn">from</span> <span class="nn">graia.broadcast.interfaces.dispatcher</span> <span class="kn">import</span> <span class="n">DispatcherInterface</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
-<span class="kn">from</span> <span class="nn">pydantic.class_validators</span> <span class="kn">import</span> <span class="n">validator</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
 
 <span class="kn">from</span> <span class="nn">..context</span> <span class="kn">import</span> <span class="n">adapter_ctx</span>
-<span class="kn">from</span> <span class="nn">..dispatcher</span> <span class="kn">import</span> <span class="n">ApplicationDispatcher</span>
+<span class="kn">from</span> <span class="nn">..dispatcher</span> <span class="kn">import</span> <span class="n">ContextDispatcher</span>
 <span class="kn">from</span> <span class="nn">..exception</span> <span class="kn">import</span> <span class="n">InvalidSession</span>
 <span class="kn">from</span> <span class="nn">..message.element</span> <span class="kn">import</span> <span class="n">Element</span>
 <span class="kn">from</span> <span class="nn">..model</span> <span class="kn">import</span> <span class="n">CallMethod</span><span class="p">,</span> <span class="n">Client</span><span class="p">,</span> <span class="n">Friend</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="n">Member</span><span class="p">,</span> <span class="n">MemberPerm</span>
@@ -811,8 +807,8 @@
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
     <span class="n">group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Group</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotMuteEvent&quot;</span><span class="p">]):</span>
@@ -837,8 +833,8 @@
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
     <span class="n">group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Group</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotUnmuteEvent&quot;</span><span class="p">]):</span>
@@ -862,8 +858,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">inviter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;invitor&quot;</span><span class="p">)</span>  <span class="c1"># F**k you typo</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotJoinGroupEvent&quot;</span><span class="p">]):</span>
@@ -884,8 +880,8 @@
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;BotLeaveEventActive&quot;</span>
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotLeaveEventActive&quot;</span><span class="p">]):</span>
@@ -906,8 +902,8 @@
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;BotLeaveEventKick&quot;</span>
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotLeaveEventKick&quot;</span><span class="p">]):</span>
@@ -933,8 +929,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupRecallEvent&quot;</span><span class="p">]):</span>
@@ -980,21 +976,15 @@
     <span class="n">friend_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">group_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="n">context_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;friend&quot;</span><span class="p">,</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">context_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;friend&quot;</span><span class="p">,</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="s2">&quot;stranger&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;friend_id&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">subject_handle_friend_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Friend&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
-
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;group_id&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">subject_handle_group_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Group&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
-
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;context_type&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">subject_handle_context_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ctx_type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;context_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">ctx_type</span> <span class="o">==</span> <span class="s2">&quot;group&quot;</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;group_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;friend_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">GroupNameChangeEvent</span><span class="p">(</span><span class="n">GroupEvent</span><span class="p">):</span>
@@ -1014,8 +1004,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupNameChangeEvent&quot;</span><span class="p">]):</span>
@@ -1042,8 +1032,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span>
@@ -1072,8 +1062,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupMuteAllEvent&quot;</span><span class="p">]):</span>
@@ -1100,8 +1090,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupAllowAnonymousChatEvent&quot;</span><span class="p">]):</span>
@@ -1128,8 +1118,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupAllowConfessTalkEvent&quot;</span><span class="p">]):</span>
@@ -1156,8 +1146,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupAllowMemberInviteEvent&quot;</span><span class="p">]):</span>
@@ -1182,8 +1172,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">inviter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;invitor&quot;</span><span class="p">)</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberJoinEvent&quot;</span><span class="p">]):</span>
@@ -1210,8 +1200,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberLeaveEventKick&quot;</span><span class="p">]):</span>
@@ -1238,8 +1228,8 @@
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;MemberLeaveEventQuit&quot;</span>
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberLeaveEventQuit&quot;</span><span class="p">]):</span>
@@ -1269,8 +1259,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberCardChangeEvent&quot;</span><span class="p">]):</span>
@@ -1299,8 +1289,8 @@
     <span class="n">current</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span>
@@ -1328,8 +1318,8 @@
     <span class="n">current</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberPermissionChangeEvent&quot;</span><span class="p">]):</span>
@@ -1357,8 +1347,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberMuteEvent&quot;</span><span class="p">]):</span>
@@ -1388,8 +1378,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberUnmuteEvent&quot;</span><span class="p">]):</span>
@@ -1418,8 +1408,8 @@
     <span class="n">action</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">honor</span><span class="p">:</span> <span class="nb">str</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberHonorChangeEvent&quot;</span><span class="p">]):</span>
@@ -1795,12 +1785,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="BotEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -1849,12 +1839,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="FriendEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="FriendEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="FriendEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="FriendEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="FriendEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -1903,12 +1893,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="GroupEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="GroupEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="GroupEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="GroupEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="GroupEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -1969,12 +1959,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotOnlineEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotOnlineEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="BotOnlineEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotOnlineEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotOnlineEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2035,12 +2025,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotOfflineEventActive.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotOfflineEventActive.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="BotOfflineEventActive.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotOfflineEventActive.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotOfflineEventActive.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2101,12 +2091,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotOfflineEventForce.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotOfflineEventForce.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="BotOfflineEventForce.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotOfflineEventForce.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotOfflineEventForce.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2167,12 +2157,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotOfflineEventDropped.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotOfflineEventDropped.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="BotOfflineEventDropped.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotOfflineEventDropped.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotOfflineEventDropped.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2233,12 +2223,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotReloginEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotReloginEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="BotReloginEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotReloginEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotReloginEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2300,12 +2290,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="FriendInputStatusChangedEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="FriendInputStatusChangedEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="FriendInputStatusChangedEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="FriendInputStatusChangedEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="FriendInputStatusChangedEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2368,12 +2358,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="FriendNickChangedEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="FriendNickChangedEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="FriendNickChangedEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="FriendNickChangedEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="FriendNickChangedEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2436,12 +2426,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotGroupPermissionChangeEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotGroupPermissionChangeEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="BotGroupPermissionChangeEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotGroupPermissionChangeEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotGroupPermissionChangeEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2474,8 +2464,8 @@
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
     <span class="n">group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Group</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotMuteEvent&quot;</span><span class="p">]):</span>
@@ -2518,11 +2508,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotMuteEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotMuteEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotMuteEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotMuteEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2539,8 +2529,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotMuteEvent&quot;</span><span class="p">]):</span>
@@ -2570,7 +2560,7 @@
                             <div id="BotMuteEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#BotMuteEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -2657,8 +2647,8 @@
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
     <span class="n">group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Group</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotUnmuteEvent&quot;</span><span class="p">]):</span>
@@ -2701,11 +2691,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotUnmuteEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotUnmuteEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotUnmuteEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotUnmuteEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2722,8 +2712,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotUnmuteEvent&quot;</span><span class="p">]):</span>
@@ -2753,7 +2743,7 @@
                             <div id="BotUnmuteEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#BotUnmuteEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -2839,8 +2829,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">inviter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;invitor&quot;</span><span class="p">)</span>  <span class="c1"># F**k you typo</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotJoinGroupEvent&quot;</span><span class="p">]):</span>
@@ -2880,11 +2870,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotJoinGroupEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotJoinGroupEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotJoinGroupEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotJoinGroupEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -2901,8 +2891,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotJoinGroupEvent&quot;</span><span class="p">]):</span>
@@ -2930,7 +2920,7 @@
                             <div id="BotJoinGroupEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#BotJoinGroupEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -3013,8 +3003,8 @@
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;BotLeaveEventActive&quot;</span>
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotLeaveEventActive&quot;</span><span class="p">]):</span>
@@ -3054,11 +3044,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotLeaveEventActive.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotLeaveEventActive.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotLeaveEventActive.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotLeaveEventActive.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -3075,8 +3065,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotLeaveEventActive&quot;</span><span class="p">]):</span>
@@ -3104,7 +3094,7 @@
                             <div id="BotLeaveEventActive.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#BotLeaveEventActive.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -3187,8 +3177,8 @@
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;BotLeaveEventKick&quot;</span>
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotLeaveEventKick&quot;</span><span class="p">]):</span>
@@ -3228,11 +3218,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotLeaveEventKick.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotLeaveEventKick.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotLeaveEventKick.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotLeaveEventKick.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -3249,8 +3239,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;BotLeaveEventKick&quot;</span><span class="p">]):</span>
@@ -3278,7 +3268,7 @@
                             <div id="BotLeaveEventKick.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#BotLeaveEventKick.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -3366,8 +3356,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupRecallEvent&quot;</span><span class="p">]):</span>
@@ -3410,11 +3400,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="GroupRecallEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="GroupRecallEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="GroupRecallEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="GroupRecallEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -3431,8 +3421,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupRecallEvent&quot;</span><span class="p">]):</span>
@@ -3462,7 +3452,7 @@
                             <div id="GroupRecallEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#GroupRecallEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -3581,12 +3571,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="FriendRecallEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="FriendRecallEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="FriendRecallEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="FriendRecallEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="FriendRecallEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -3623,21 +3613,15 @@
     <span class="n">friend_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">group_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="n">context_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;friend&quot;</span><span class="p">,</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">context_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;friend&quot;</span><span class="p">,</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="s2">&quot;stranger&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;friend_id&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">subject_handle_friend_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Friend&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
-
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;group_id&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">subject_handle_group_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Group&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
-
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;context_type&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">subject_handle_context_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ctx_type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;context_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">ctx_type</span> <span class="o">==</span> <span class="s2">&quot;group&quot;</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;group_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;friend_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 
         </details>
@@ -3651,77 +3635,48 @@
 </div>
 
 
-                            <div id="NudgeEvent.subject_handle_friend_id" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#NudgeEvent.subject_handle_friend_id">#&nbsp;&nbsp</a>
+                            <div id="NudgeEvent.__init__" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#NudgeEvent.__init__">#&nbsp;&nbsp</a>
 
-                <div class="decorator">@validator(&#39;friend_id&#39;, pre=True, always=True, allow_reuse=True)</div>
-
-            <span class="def">def</span>
-            <span class="name">subject_handle_friend_id</span><span class="signature">(cls, v, values, **kwargs)</span>:
+        
+            <span class="name">NudgeEvent</span><span class="signature">(**data: Any)</span>
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;friend_id&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">subject_handle_friend_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Friend&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ctx_type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;context_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">ctx_type</span> <span class="o">==</span> <span class="s2">&quot;group&quot;</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;group_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;friend_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 
         </details>
 
-    
+            <div class="docstring"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
 
-                            </div>
-                            <div id="NudgeEvent.subject_handle_group_id" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#NudgeEvent.subject_handle_group_id">#&nbsp;&nbsp</a>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+</div>
 
-                <div class="decorator">@validator(&#39;group_id&#39;, pre=True, always=True, allow_reuse=True)</div>
-
-            <span class="def">def</span>
-            <span class="name">subject_handle_group_id</span><span class="signature">(cls, v, values)</span>:
-    </div>
-
-                <details>
-            <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;group_id&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">subject_handle_group_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Group&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
-</pre></div>
-
-        </details>
-
-    
-
-                            </div>
-                            <div id="NudgeEvent.subject_handle_context_type" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#NudgeEvent.subject_handle_context_type">#&nbsp;&nbsp</a>
-
-                <div class="decorator">@validator(&#39;context_type&#39;, pre=True, always=True, allow_reuse=True)</div>
-
-            <span class="def">def</span>
-            <span class="name">subject_handle_context_type</span><span class="signature">(cls, v, values)</span>:
-    </div>
-
-                <details>
-            <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;context_type&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">subject_handle_context_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;origin_subject_info&quot;</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">])</span>
-</pre></div>
-
-        </details>
-
-    
 
                             </div>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
-                                    <div><dt>pydantic.main.BaseModel</dt>
-                                <dd id="NudgeEvent.__init__" class="function">BaseModel</dd>
-                <dd id="NudgeEvent.json" class="function">json</dd>
+                                    <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
+                                <dd id="NudgeEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
+                <dd id="NudgeEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
+
+            </div>
+            <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
+                                <dd id="NudgeEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="NudgeEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
+
+            </div>
+            <div><dt>pydantic.main.BaseModel</dt>
+                                <dd id="NudgeEvent.json" class="function">json</dd>
                 <dd id="NudgeEvent.parse_obj" class="function">parse_obj</dd>
                 <dd id="NudgeEvent.parse_raw" class="function">parse_raw</dd>
                 <dd id="NudgeEvent.parse_file" class="function">parse_file</dd>
@@ -3732,16 +3687,6 @@
                 <dd id="NudgeEvent.schema_json" class="function">schema_json</dd>
                 <dd id="NudgeEvent.validate" class="function">validate</dd>
                 <dd id="NudgeEvent.update_forward_refs" class="function">update_forward_refs</dd>
-
-            </div>
-            <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
-                                <dd id="NudgeEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="NudgeEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
-                <dd id="NudgeEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
-
-            </div>
-            <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
-                                <dd id="NudgeEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
 
             </div>
                                 </dl>
@@ -3775,8 +3720,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupNameChangeEvent&quot;</span><span class="p">]):</span>
@@ -3819,11 +3764,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="GroupNameChangeEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="GroupNameChangeEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="GroupNameChangeEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="GroupNameChangeEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -3840,8 +3785,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupNameChangeEvent&quot;</span><span class="p">]):</span>
@@ -3871,7 +3816,7 @@
                             <div id="GroupNameChangeEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#GroupNameChangeEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -3960,8 +3905,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span>
@@ -4006,11 +3951,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="GroupEntranceAnnouncementChangeEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="GroupEntranceAnnouncementChangeEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="GroupEntranceAnnouncementChangeEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="GroupEntranceAnnouncementChangeEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -4027,8 +3972,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span>
@@ -4060,7 +4005,7 @@
                             <div id="GroupEntranceAnnouncementChangeEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#GroupEntranceAnnouncementChangeEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -4151,8 +4096,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupMuteAllEvent&quot;</span><span class="p">]):</span>
@@ -4195,11 +4140,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="GroupMuteAllEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="GroupMuteAllEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="GroupMuteAllEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="GroupMuteAllEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -4216,8 +4161,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupMuteAllEvent&quot;</span><span class="p">]):</span>
@@ -4247,7 +4192,7 @@
                             <div id="GroupMuteAllEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#GroupMuteAllEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -4336,8 +4281,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupAllowAnonymousChatEvent&quot;</span><span class="p">]):</span>
@@ -4380,11 +4325,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="GroupAllowAnonymousChatEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="GroupAllowAnonymousChatEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="GroupAllowAnonymousChatEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="GroupAllowAnonymousChatEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -4401,8 +4346,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupAllowAnonymousChatEvent&quot;</span><span class="p">]):</span>
@@ -4432,7 +4377,7 @@
                             <div id="GroupAllowAnonymousChatEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#GroupAllowAnonymousChatEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -4521,8 +4466,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupAllowConfessTalkEvent&quot;</span><span class="p">]):</span>
@@ -4565,11 +4510,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="GroupAllowConfessTalkEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="GroupAllowConfessTalkEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="GroupAllowConfessTalkEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="GroupAllowConfessTalkEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -4586,8 +4531,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupAllowConfessTalkEvent&quot;</span><span class="p">]):</span>
@@ -4617,7 +4562,7 @@
                             <div id="GroupAllowConfessTalkEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#GroupAllowConfessTalkEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -4706,8 +4651,8 @@
     <span class="n">group</span><span class="p">:</span> <span class="n">Group</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupAllowMemberInviteEvent&quot;</span><span class="p">]):</span>
@@ -4750,11 +4695,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="GroupAllowMemberInviteEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="GroupAllowMemberInviteEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="GroupAllowMemberInviteEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="GroupAllowMemberInviteEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -4771,8 +4716,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;GroupAllowMemberInviteEvent&quot;</span><span class="p">]):</span>
@@ -4802,7 +4747,7 @@
                             <div id="GroupAllowMemberInviteEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#GroupAllowMemberInviteEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -4889,8 +4834,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">inviter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;invitor&quot;</span><span class="p">)</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberJoinEvent&quot;</span><span class="p">]):</span>
@@ -4933,11 +4878,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberJoinEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberJoinEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberJoinEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberJoinEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -4954,8 +4899,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberJoinEvent&quot;</span><span class="p">]):</span>
@@ -4985,7 +4930,7 @@
                             <div id="MemberJoinEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#MemberJoinEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -5074,8 +5019,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberLeaveEventKick&quot;</span><span class="p">]):</span>
@@ -5123,11 +5068,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberLeaveEventKick.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberLeaveEventKick.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberLeaveEventKick.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberLeaveEventKick.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -5144,8 +5089,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberLeaveEventKick&quot;</span><span class="p">]):</span>
@@ -5178,7 +5123,7 @@
                             <div id="MemberLeaveEventKick.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#MemberLeaveEventKick.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -5267,8 +5212,8 @@
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;MemberLeaveEventQuit&quot;</span>
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberLeaveEventQuit&quot;</span><span class="p">]):</span>
@@ -5311,11 +5256,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberLeaveEventQuit.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberLeaveEventQuit.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberLeaveEventQuit.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberLeaveEventQuit.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -5332,8 +5277,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberLeaveEventQuit&quot;</span><span class="p">]):</span>
@@ -5363,7 +5308,7 @@
                             <div id="MemberLeaveEventQuit.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#MemberLeaveEventQuit.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -5455,8 +5400,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberCardChangeEvent&quot;</span><span class="p">]):</span>
@@ -5505,11 +5450,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberCardChangeEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberCardChangeEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberCardChangeEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberCardChangeEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -5526,8 +5471,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberCardChangeEvent&quot;</span><span class="p">]):</span>
@@ -5560,7 +5505,7 @@
                             <div id="MemberCardChangeEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#MemberCardChangeEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -5651,8 +5596,8 @@
     <span class="n">current</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span>
@@ -5697,11 +5642,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberSpecialTitleChangeEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberSpecialTitleChangeEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberSpecialTitleChangeEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberSpecialTitleChangeEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -5718,8 +5663,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span>
@@ -5751,7 +5696,7 @@
                             <div id="MemberSpecialTitleChangeEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#MemberSpecialTitleChangeEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -5841,8 +5786,8 @@
     <span class="n">current</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberPermissionChangeEvent&quot;</span><span class="p">]):</span>
@@ -5885,11 +5830,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberPermissionChangeEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberPermissionChangeEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberPermissionChangeEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberPermissionChangeEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -5906,8 +5851,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberPermissionChangeEvent&quot;</span><span class="p">]):</span>
@@ -5937,7 +5882,7 @@
                             <div id="MemberPermissionChangeEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#MemberPermissionChangeEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -6027,8 +5972,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberMuteEvent&quot;</span><span class="p">]):</span>
@@ -6076,11 +6021,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberMuteEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberMuteEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberMuteEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberMuteEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -6097,8 +6042,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberMuteEvent&quot;</span><span class="p">]):</span>
@@ -6131,7 +6076,7 @@
                             <div id="MemberMuteEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#MemberMuteEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -6223,8 +6168,8 @@
     <span class="n">member</span><span class="p">:</span> <span class="n">Member</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Member</span><span class="p">]</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberUnmuteEvent&quot;</span><span class="p">]):</span>
@@ -6272,11 +6217,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberUnmuteEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberUnmuteEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberUnmuteEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberUnmuteEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -6293,8 +6238,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberUnmuteEvent&quot;</span><span class="p">]):</span>
@@ -6327,7 +6272,7 @@
                             <div id="MemberUnmuteEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#MemberUnmuteEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -6418,8 +6363,8 @@
     <span class="n">action</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">honor</span><span class="p">:</span> <span class="nb">str</span>
 
-    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberHonorChangeEvent&quot;</span><span class="p">]):</span>
@@ -6462,11 +6407,11 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberHonorChangeEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberHonorChangeEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberHonorChangeEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberHonorChangeEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -6483,8 +6428,8 @@
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>
-        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ApplicationDispatcher</span><span class="p">]</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="n">BaseDispatcher</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+        <span class="n">mixin</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContextDispatcher</span><span class="p">]</span>
 
         <span class="nd">@staticmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">interface</span><span class="p">:</span> <span class="n">DispatcherInterface</span><span class="p">[</span><span class="s2">&quot;MemberHonorChangeEvent&quot;</span><span class="p">]):</span>
@@ -6514,7 +6459,7 @@
                             <div id="MemberHonorChangeEvent.Dispatcher.mixin" class="classattr">
                                             <div class="attr variable"><a class="headerlink" href="#MemberHonorChangeEvent.Dispatcher.mixin">#&nbsp;&nbsp</a>
 
-        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ApplicationDispatcher">ariadne.dispatcher.ApplicationDispatcher</a>&#39;&gt;]</span>
+        <span class="name">mixin</span><span class="annotation">: List[Union[graia.broadcast.entities.dispatcher.BaseDispatcher, Type[graia.broadcast.entities.dispatcher.BaseDispatcher]]]</span><span class="default_value"> = [&lt;class &#39;<a href="../dispatcher.html#ContextDispatcher">ariadne.dispatcher.ContextDispatcher</a>&#39;&gt;]</span>
     </div>
 
             <div class="docstring"><p>声明该 Dispatcher 所包含的来自其他 Dispatcher 提供的参数解析支持,
@@ -6646,12 +6591,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="RequestEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="RequestEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="RequestEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="RequestEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="RequestEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -6948,12 +6893,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="NewFriendRequestEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="NewFriendRequestEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="NewFriendRequestEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="NewFriendRequestEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="NewFriendRequestEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -7396,12 +7341,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="MemberJoinRequestEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="MemberJoinRequestEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="MemberJoinRequestEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="MemberJoinRequestEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="MemberJoinRequestEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -7637,12 +7582,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="BotInvitedJoinGroupRequestEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="BotInvitedJoinGroupRequestEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="BotInvitedJoinGroupRequestEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="BotInvitedJoinGroupRequestEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="BotInvitedJoinGroupRequestEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -7704,12 +7649,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="OtherClientOnlineEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="OtherClientOnlineEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="OtherClientOnlineEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="OtherClientOnlineEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="OtherClientOnlineEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -7770,12 +7715,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="OtherClientOfflineEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="OtherClientOfflineEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="OtherClientOfflineEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="OtherClientOfflineEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="OtherClientOfflineEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>
@@ -7839,12 +7784,12 @@
             </div>
             <div><dt><a href="../event.html#MiraiEvent">ariadne.event.MiraiEvent</a></dt>
                                 <dd id="CommandExecutedEvent.validate_event_type" class="function"><a href="../event.html#MiraiEvent.validate_event_type">validate_event_type</a></dd>
-                <dd id="CommandExecutedEvent.Config" class="class"><a href="../event.html#MiraiEvent.Config">Config</a></dd>
                 <dd id="CommandExecutedEvent.Dispatcher" class="class"><a href="../event.html#MiraiEvent.Dispatcher">Dispatcher</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
                                 <dd id="CommandExecutedEvent.dict" class="function"><a href="../model.html#AriadneBaseModel.dict">dict</a></dd>
+                <dd id="CommandExecutedEvent.Config" class="class"><a href="../model.html#AriadneBaseModel.Config">Config</a></dd>
 
             </div>
                                 </dl>

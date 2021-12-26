@@ -54,10 +54,13 @@
                     <h1 class="modulename">
 <a href="./../ariadne.html">ariadne</a><wbr>.context    </h1>
 
-                
+                        <div class="docstring"><p>本模块创建了 Ariadne 中的上下文变量</p>
+</div>
+
                         <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+            <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;本模块创建了 Ariadne 中的上下文变量&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 <span class="kn">from</span> <span class="nn">contextvars</span> <span class="kn">import</span> <span class="n">ContextVar</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
@@ -65,20 +68,20 @@
     <span class="kn">from</span> <span class="nn">asyncio.events</span> <span class="kn">import</span> <span class="n">AbstractEventLoop</span>
 
     <span class="kn">from</span> <span class="nn">graia.broadcast</span> <span class="kn">import</span> <span class="n">Broadcast</span>
+    <span class="kn">from</span> <span class="nn">graia.broadcast.entities.event</span> <span class="kn">import</span> <span class="n">Dispatchable</span>
 
     <span class="kn">from</span> <span class="nn">.adapter</span> <span class="kn">import</span> <span class="n">Adapter</span>
     <span class="kn">from</span> <span class="nn">.app</span> <span class="kn">import</span> <span class="n">Ariadne</span>
-    <span class="kn">from</span> <span class="nn">.event</span> <span class="kn">import</span> <span class="n">MiraiEvent</span>
     <span class="kn">from</span> <span class="nn">.model</span> <span class="kn">import</span> <span class="n">UploadMethod</span>
 
-    <span class="n">ariadne_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="s2">&quot;Ariadne&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;application&quot;</span><span class="p">)</span>
-    <span class="n">adapter_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="s2">&quot;Adapter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;adapter&quot;</span><span class="p">)</span>
-    <span class="n">event_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="s2">&quot;MiraiEvent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">)</span>
-    <span class="n">event_loop_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="s2">&quot;AbstractEventLoop&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;event_loop&quot;</span><span class="p">)</span>
-    <span class="n">broadcast_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="s2">&quot;Broadcast&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;broadcast&quot;</span><span class="p">)</span>
-    <span class="n">upload_method_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="s2">&quot;UploadMethod&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;upload_method&quot;</span><span class="p">)</span>
+    <span class="n">ariadne_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="n">Ariadne</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;ariadne&quot;</span><span class="p">)</span>
+    <span class="n">adapter_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="n">Adapter</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;adapter&quot;</span><span class="p">)</span>
+    <span class="n">event_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="n">Dispatchable</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">)</span>
+    <span class="n">event_loop_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="n">AbstractEventLoop</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;event_loop&quot;</span><span class="p">)</span>
+    <span class="n">broadcast_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="n">Broadcast</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;broadcast&quot;</span><span class="p">)</span>
+    <span class="n">upload_method_ctx</span><span class="p">:</span> <span class="n">ContextVar</span><span class="p">[</span><span class="n">UploadMethod</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;upload_method&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>  <span class="c1"># for not crashing pdoc</span>
-    <span class="n">ariadne_ctx</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;application&quot;</span><span class="p">)</span>
+    <span class="n">ariadne_ctx</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;ariadne&quot;</span><span class="p">)</span>
     <span class="n">adapter_ctx</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;adapter&quot;</span><span class="p">)</span>
     <span class="n">event_ctx</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">)</span>
     <span class="n">event_loop_ctx</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;event_loop&quot;</span><span class="p">)</span>
@@ -88,13 +91,24 @@
 
 <span class="nd">@contextmanager</span>
 <span class="k">def</span> <span class="nf">enter_message_send_context</span><span class="p">(</span><span class="n">method</span><span class="p">:</span> <span class="s2">&quot;UploadMethod&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;进入消息发送上下文</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        method (UploadMethod): 消息上下文的枚举对象</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
     <span class="k">yield</span>
     <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 
 
 <span class="nd">@contextmanager</span>
-<span class="k">def</span> <span class="nf">enter_context</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="s2">&quot;MiraiEvent&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">enter_context</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="s2">&quot;Dispatchable&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;进入事件上下文</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        app (Ariadne, optional): Ariadne 实例.</span>
+<span class="sd">        event (Dispatchable, optional): 当前事件</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">token_app</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">token_event</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">token_loop</span> <span class="o">=</span> <span class="kc">None</span>
@@ -142,6 +156,11 @@
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="nd">@contextmanager</span>
 <span class="k">def</span> <span class="nf">enter_message_send_context</span><span class="p">(</span><span class="n">method</span><span class="p">:</span> <span class="s2">&quot;UploadMethod&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;进入消息发送上下文</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        method (UploadMethod): 消息上下文的枚举对象</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
     <span class="k">yield</span>
     <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -149,7 +168,15 @@
 
         </details>
 
-    
+            <div class="docstring"><p>进入消息发送上下文</p>
+
+<h6 id="args">Args</h6>
+
+<ul>
+<li><strong>method (UploadMethod):</strong>  消息上下文的枚举对象</li>
+</ul>
+</div>
+
 
                 </section>
                 <section id="enter_context">
@@ -160,14 +187,20 @@
             <span class="def">def</span>
             <span class="name">enter_context</span><span class="signature">(
     app: <a href="app.html#Ariadne">ariadne.app.Ariadne</a> = None,
-    event: <a href="event.html#MiraiEvent">ariadne.event.MiraiEvent</a> = None
+    event: graia.broadcast.entities.event.Dispatchable = None
 )</span>:
     </div>
 
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="nd">@contextmanager</span>
-<span class="k">def</span> <span class="nf">enter_context</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="s2">&quot;MiraiEvent&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">enter_context</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="s2">&quot;Ariadne&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="s2">&quot;Dispatchable&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;进入事件上下文</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        app (Ariadne, optional): Ariadne 实例.</span>
+<span class="sd">        event (Dispatchable, optional): 当前事件</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">token_app</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">token_event</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">token_loop</span> <span class="o">=</span> <span class="kc">None</span>
@@ -201,7 +234,16 @@
 
         </details>
 
-    
+            <div class="docstring"><p>进入事件上下文</p>
+
+<h6 id="args">Args</h6>
+
+<ul>
+<li><strong>app (Ariadne, optional):</strong>  Ariadne 实例.</li>
+<li><strong>event (Dispatchable, optional):</strong>  当前事件</li>
+</ul>
+</div>
+
 
                 </section>
     </main>
