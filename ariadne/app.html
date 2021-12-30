@@ -220,13 +220,7 @@
                                 <a class="function" href="#Ariadne.stop">stop</a>
                         </li>
                         <li>
-                                <a class="function" href="#Ariadne.request_stop">request_stop</a>
-                        </li>
-                        <li>
                                 <a class="function" href="#Ariadne.join">join</a>
-                        </li>
-                        <li>
-                                <a class="function" href="#Ariadne.wait_for_stop">wait_for_stop</a>
                         </li>
                         <li>
                                 <a class="function" href="#Ariadne.lifecycle">lifecycle</a>
@@ -246,7 +240,7 @@
     </ul>
 
 
-                    <footer>© Graia Project 2021</footer>
+                    <footer>Copyright © Graia Project 2021-2022</footer>
 
                     <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev">
                         built with <span class="visually-hidden">pdoc</span><img
@@ -321,7 +315,6 @@
 <span class="kn">from</span> <span class="nn">.util</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">app_ctx_manager</span><span class="p">,</span>
     <span class="n">await_predicate</span><span class="p">,</span>
-    <span class="n">deprecated</span><span class="p">,</span>
     <span class="n">inject_bypass_listener</span><span class="p">,</span>
     <span class="n">inject_loguru_traceback</span><span class="p">,</span>
     <span class="n">yield_with_timeout</span><span class="p">,</span>
@@ -1329,19 +1322,25 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadFile</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
-        <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span><span class="p">,</span>
-        <span class="n">target</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Friend</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+        <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">target</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Friend</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FileInfo&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        上传文件到指定目标, 需要提供: 文件的原始数据(bytes), 文件的上传类型,</span>
 <span class="sd">        上传目标, (可选)上传目录ID.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            data (bytes): 文件的原始数据</span>
-<span class="sd">            method (UploadMethod): 文件的上传类型</span>
+<span class="sd">            method (UploadMethod, optional): 文件的上传类型</span>
+<span class="sd">            target (Union[Friend, Group, int]): 文件上传目标, 即群组</span>
+<span class="sd">            path (str): 目标路径, 默认为根路径.</span>
+<span class="sd">            name (str): 文件名, 可选, 若 path 存在斜杠可从 path 推断.</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            FileInfo: 文件信息</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span> <span class="ow">or</span> <span class="n">UploadMethod</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">method</span> <span class="o">!=</span> <span class="n">UploadMethod</span><span class="o">.</span><span class="n">Group</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Friend</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not implemented for </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1349,15 +1348,18 @@
         <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Friend</span><span class="p">)</span> <span class="k">else</span> <span class="n">target</span>
         <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Group</span><span class="p">)</span> <span class="k">else</span> <span class="n">target</span>
 
+        <span class="k">if</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">path</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">path</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span>
             <span class="s2">&quot;file/upload&quot;</span><span class="p">,</span>
             <span class="n">CallMethod</span><span class="o">.</span><span class="n">MULTIPART</span><span class="p">,</span>
             <span class="p">{</span>
                 <span class="s2">&quot;sessionKey&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_key</span><span class="p">,</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">method</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
-                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">target</span><span class="p">,</span>
+                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
                 <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
-                <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+                <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span> <span class="k">if</span> <span class="n">name</span> <span class="k">else</span> <span class="p">{}),</span>
             <span class="p">},</span>
         <span class="p">)</span>
 
@@ -1368,15 +1370,18 @@
     <span class="sd">&quot;&quot;&quot;用于与多媒体信息交互的 Mixin 类.&quot;&quot;&quot;</span>
 
     <span class="nd">@app_ctx_manager</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Image&quot;</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Image&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;上传一张图片到远端服务器, 需要提供: 图片的原始数据(bytes), 图片的上传类型.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            image_bytes (bytes): 图片的原始数据</span>
-<span class="sd">            method (UploadMethod): 图片的上传类型</span>
+<span class="sd">            method (UploadMethod): 图片的上传类型, 可从上下文推断</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Image: 生成的图片消息元素</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="n">upload_method_ctx</span>
         <span class="kn">from</span> <span class="nn">.message.element</span> <span class="kn">import</span> <span class="n">Image</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span> <span class="ow">or</span> <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span>
             <span class="s2">&quot;uploadImage&quot;</span><span class="p">,</span>
@@ -1391,15 +1396,18 @@
         <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">parse_obj</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
     <span class="nd">@app_ctx_manager</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadVoice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Voice&quot;</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadVoice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Voice&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;上传语音到远端服务器, 需要提供: 语音的原始数据(bytes), 语音的上传类型.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            data (bytes): 语音的原始数据</span>
-<span class="sd">            method (UploadMethod): 语音的上传类型</span>
+<span class="sd">            method (UploadMethod): 语音的上传类型, 可从上下文推断</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Voice: 生成的语音消息元素</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="n">upload_method_ctx</span>
         <span class="kn">from</span> <span class="nn">.message.element</span> <span class="kn">import</span> <span class="n">Voice</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span> <span class="ow">or</span> <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span>
             <span class="s2">&quot;uploadVoice&quot;</span><span class="p">,</span>
@@ -1438,7 +1446,6 @@
         <span class="n">chat_log_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ChatLogConfig</span><span class="p">,</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">use_loguru_traceback</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">use_bypass_listener</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">await_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">disable_telemetry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">disable_logo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
@@ -1453,7 +1460,6 @@
 <span class="sd">            设置为 False 则会完全禁用聊天日志.</span>
 <span class="sd">            use_loguru_traceback (bool): 是否注入 loguru 以获得对 traceback.print_exception() 与 sys.excepthook 的完全控制.</span>
 <span class="sd">            use_bypass_listener (bool): 是否注入 BypassListener 以获得子事件监听支持.</span>
-<span class="sd">            await_task (bool): 是否等待所有 Executor 任务完成再退出.</span>
 <span class="sd">            disable_telemetry (bool): 是否禁用版本记录.</span>
 <span class="sd">            disable_logo (bool): 是否禁用 logo 显示.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1480,7 +1486,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">:</span> <span class="n">AriadneStatus</span> <span class="o">=</span> <span class="n">AriadneStatus</span><span class="o">.</span><span class="n">STOP</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remote_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_retry</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">max_retry</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">await_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">await_task</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_telemetry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">disable_telemetry</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_logo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">disable_logo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">type</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -1538,6 +1543,8 @@
 <span class="sd">        Args:</span>
 <span class="sd">            retry_interval (float, optional): Adapter 重连间隔 (s). 默认 5.0.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.event.mirai</span> <span class="kn">import</span> <span class="n">FriendEvent</span><span class="p">,</span> <span class="n">GroupEvent</span>
+
         <span class="n">retry_cnt</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Ariadne daemon started.&quot;</span><span class="p">)</span>
@@ -1554,7 +1561,14 @@
                     <span class="p">),</span>
                 <span class="p">):</span>
                     <span class="k">with</span> <span class="n">enter_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">FriendEvent</span><span class="p">):</span>
+                            <span class="k">with</span> <span class="n">enter_message_send_context</span><span class="p">(</span><span class="n">UploadMethod</span><span class="o">.</span><span class="n">Friend</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">GroupEvent</span><span class="p">):</span>
+                            <span class="k">with</span> <span class="n">enter_message_send_context</span><span class="p">(</span><span class="n">UploadMethod</span><span class="o">.</span><span class="n">Group</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">AdapterShutdowned</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
@@ -1567,7 +1581,6 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">retry_cnt</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">mirai_session</span><span class="p">)</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;daemon: adapter down, restart in </span><span class="si">{</span><span class="n">retry_interval</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
                 <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">retry_interval</span><span class="p">)</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;daemon: restarting adapter&quot;</span><span class="p">)</span>
@@ -1582,14 +1595,10 @@
             <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">current_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="n">coro</span><span class="p">:</span> <span class="n">Coroutine</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_coro</span><span class="p">()</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">==</span> <span class="s2">&quot;Broadcast.Executor&quot;</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">await_task</span><span class="p">:</span>
-                        <span class="n">t</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
-                    <span class="k">await</span> <span class="n">t</span>
-                <span class="k">elif</span> <span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">==</span> <span class="s2">&quot;print_track_async.&lt;locals&gt;.wrapper&quot;</span><span class="p">:</span>  <span class="c1"># Scheduler run</span>
+                <span class="k">if</span> <span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;Broadcast.Executor&quot;</span><span class="p">,</span> <span class="s2">&quot;print_track_async.&lt;locals&gt;.wrapper&quot;</span><span class="p">):</span>
                     <span class="n">t</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cancelling </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2"> wrapping </span><span class="si">{</span><span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">exceptions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">e</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">))</span>
 
@@ -1661,12 +1670,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">AriadneStatus</span><span class="o">.</span><span class="n">SHUTDOWN</span>
             <span class="k">await</span> <span class="n">await_predicate</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="ow">in</span> <span class="p">{</span><span class="n">AriadneStatus</span><span class="o">.</span><span class="n">CLEANUP</span><span class="p">,</span> <span class="n">AriadneStatus</span><span class="o">.</span><span class="n">STOP</span><span class="p">})</span>
 
-    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.5.0&quot;</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-function-docstring</span>
-        <span class="c1"># pylint: disable</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;use &quot;stop&quot; instead!&quot;&quot;&quot;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
     <span class="k">async</span> <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;等待直到 Ariadne 真正停止.</span>
 <span class="sd">        不要在与 Broadcast 相关的任务中使用.</span>
@@ -1675,12 +1678,6 @@
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">await_predicate</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="ow">is</span> <span class="n">AriadneStatus</span><span class="o">.</span><span class="n">STOP</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">daemon_task</span>
-
-    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.5.0&quot;</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">wait_for_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-function-docstring</span>
-        <span class="c1"># pylint: disable</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;use &quot;join&quot; instead!&quot;&quot;&quot;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">lifecycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;以 async 阻塞方式启动 Ariadne 并等待其停止.&quot;&quot;&quot;</span>
@@ -4665,19 +4662,25 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadFile</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
-        <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span><span class="p">,</span>
-        <span class="n">target</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Friend</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+        <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">target</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Friend</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FileInfo&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        上传文件到指定目标, 需要提供: 文件的原始数据(bytes), 文件的上传类型,</span>
 <span class="sd">        上传目标, (可选)上传目录ID.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            data (bytes): 文件的原始数据</span>
-<span class="sd">            method (UploadMethod): 文件的上传类型</span>
+<span class="sd">            method (UploadMethod, optional): 文件的上传类型</span>
+<span class="sd">            target (Union[Friend, Group, int]): 文件上传目标, 即群组</span>
+<span class="sd">            path (str): 目标路径, 默认为根路径.</span>
+<span class="sd">            name (str): 文件名, 可选, 若 path 存在斜杠可从 path 推断.</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            FileInfo: 文件信息</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span> <span class="ow">or</span> <span class="n">UploadMethod</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">method</span> <span class="o">!=</span> <span class="n">UploadMethod</span><span class="o">.</span><span class="n">Group</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Friend</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not implemented for </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -4685,15 +4688,18 @@
         <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Friend</span><span class="p">)</span> <span class="k">else</span> <span class="n">target</span>
         <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Group</span><span class="p">)</span> <span class="k">else</span> <span class="n">target</span>
 
+        <span class="k">if</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">path</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">path</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span>
             <span class="s2">&quot;file/upload&quot;</span><span class="p">,</span>
             <span class="n">CallMethod</span><span class="o">.</span><span class="n">MULTIPART</span><span class="p">,</span>
             <span class="p">{</span>
                 <span class="s2">&quot;sessionKey&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_key</span><span class="p">,</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">method</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
-                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">target</span><span class="p">,</span>
+                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
                 <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
-                <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+                <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span> <span class="k">if</span> <span class="n">name</span> <span class="k">else</span> <span class="p">{}),</span>
             <span class="p">},</span>
         <span class="p">)</span>
 
@@ -5186,9 +5192,10 @@
             <span class="name">uploadFile</span><span class="signature">(
     self,
     data: bytes,
-    method: <a href="model.html#UploadMethod">ariadne.model.UploadMethod</a>,
-    target: Union[<a href="model.html#Friend">ariadne.model.Friend</a>, <a href="model.html#Group">ariadne.model.Group</a>, int],
-    path: str = &#39;&#39;
+    method: <a href="model.html#UploadMethod">ariadne.model.UploadMethod</a> = None,
+    target: Union[<a href="model.html#Friend">ariadne.model.Friend</a>, <a href="model.html#Group">ariadne.model.Group</a>, int] = -1,
+    path: str = &#39;&#39;,
+    name: str = &#39;&#39;
 ) -&gt; <a href="model.html#FileInfo">ariadne.model.FileInfo</a></span>:
     </div>
 
@@ -5198,19 +5205,25 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadFile</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
-        <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span><span class="p">,</span>
-        <span class="n">target</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Friend</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+        <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">target</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Friend</span><span class="p">,</span> <span class="n">Group</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FileInfo&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        上传文件到指定目标, 需要提供: 文件的原始数据(bytes), 文件的上传类型,</span>
 <span class="sd">        上传目标, (可选)上传目录ID.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            data (bytes): 文件的原始数据</span>
-<span class="sd">            method (UploadMethod): 文件的上传类型</span>
+<span class="sd">            method (UploadMethod, optional): 文件的上传类型</span>
+<span class="sd">            target (Union[Friend, Group, int]): 文件上传目标, 即群组</span>
+<span class="sd">            path (str): 目标路径, 默认为根路径.</span>
+<span class="sd">            name (str): 文件名, 可选, 若 path 存在斜杠可从 path 推断.</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            FileInfo: 文件信息</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span> <span class="ow">or</span> <span class="n">UploadMethod</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">method</span> <span class="o">!=</span> <span class="n">UploadMethod</span><span class="o">.</span><span class="n">Group</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Friend</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not implemented for </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -5218,15 +5231,18 @@
         <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Friend</span><span class="p">)</span> <span class="k">else</span> <span class="n">target</span>
         <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Group</span><span class="p">)</span> <span class="k">else</span> <span class="n">target</span>
 
+        <span class="k">if</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">path</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">path</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span>
             <span class="s2">&quot;file/upload&quot;</span><span class="p">,</span>
             <span class="n">CallMethod</span><span class="o">.</span><span class="n">MULTIPART</span><span class="p">,</span>
             <span class="p">{</span>
                 <span class="s2">&quot;sessionKey&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_key</span><span class="p">,</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">method</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
-                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">target</span><span class="p">,</span>
+                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
                 <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
-                <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+                <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span> <span class="k">if</span> <span class="n">name</span> <span class="k">else</span> <span class="p">{}),</span>
             <span class="p">},</span>
         <span class="p">)</span>
 
@@ -5242,7 +5258,10 @@
 
 <ul>
 <li><strong>data (bytes):</strong>  文件的原始数据</li>
-<li><strong>method (UploadMethod):</strong>  文件的上传类型</li>
+<li><strong>method (UploadMethod, optional):</strong>  文件的上传类型</li>
+<li><strong>target (Union[Friend, Group, int]):</strong>  文件上传目标, 即群组</li>
+<li><strong>path (str):</strong>  目标路径, 默认为根路径.</li>
+<li><strong>name (str):</strong>  文件名, 可选, 若 path 存在斜杠可从 path 推断.</li>
 </ul>
 
 <h6 id="returns">Returns</h6>
@@ -5279,15 +5298,18 @@
     <span class="sd">&quot;&quot;&quot;用于与多媒体信息交互的 Mixin 类.&quot;&quot;&quot;</span>
 
     <span class="nd">@app_ctx_manager</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Image&quot;</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Image&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;上传一张图片到远端服务器, 需要提供: 图片的原始数据(bytes), 图片的上传类型.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            image_bytes (bytes): 图片的原始数据</span>
-<span class="sd">            method (UploadMethod): 图片的上传类型</span>
+<span class="sd">            method (UploadMethod): 图片的上传类型, 可从上下文推断</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Image: 生成的图片消息元素</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="n">upload_method_ctx</span>
         <span class="kn">from</span> <span class="nn">.message.element</span> <span class="kn">import</span> <span class="n">Image</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span> <span class="ow">or</span> <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span>
             <span class="s2">&quot;uploadImage&quot;</span><span class="p">,</span>
@@ -5302,15 +5324,18 @@
         <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">parse_obj</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
     <span class="nd">@app_ctx_manager</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadVoice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Voice&quot;</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadVoice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Voice&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;上传语音到远端服务器, 需要提供: 语音的原始数据(bytes), 语音的上传类型.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            data (bytes): 语音的原始数据</span>
-<span class="sd">            method (UploadMethod): 语音的上传类型</span>
+<span class="sd">            method (UploadMethod): 语音的上传类型, 可从上下文推断</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Voice: 生成的语音消息元素</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="n">upload_method_ctx</span>
         <span class="kn">from</span> <span class="nn">.message.element</span> <span class="kn">import</span> <span class="n">Voice</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span> <span class="ow">or</span> <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span>
             <span class="s2">&quot;uploadVoice&quot;</span><span class="p">,</span>
@@ -5351,22 +5376,25 @@
             <span class="name">uploadImage</span><span class="signature">(
     self,
     data: bytes,
-    method: <a href="model.html#UploadMethod">ariadne.model.UploadMethod</a>
+    method: <a href="model.html#UploadMethod">ariadne.model.UploadMethod</a> = None
 ) -&gt; <a href="message/element.html#Image">ariadne.message.element.Image</a></span>:
     </div>
 
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span>    <span class="nd">@app_ctx_manager</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Image&quot;</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Image&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;上传一张图片到远端服务器, 需要提供: 图片的原始数据(bytes), 图片的上传类型.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            image_bytes (bytes): 图片的原始数据</span>
-<span class="sd">            method (UploadMethod): 图片的上传类型</span>
+<span class="sd">            method (UploadMethod): 图片的上传类型, 可从上下文推断</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Image: 生成的图片消息元素</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="n">upload_method_ctx</span>
         <span class="kn">from</span> <span class="nn">.message.element</span> <span class="kn">import</span> <span class="n">Image</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span> <span class="ow">or</span> <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span>
             <span class="s2">&quot;uploadImage&quot;</span><span class="p">,</span>
@@ -5389,7 +5417,7 @@
 
 <ul>
 <li><strong>image_bytes (bytes):</strong>  图片的原始数据</li>
-<li><strong>method (UploadMethod):</strong>  图片的上传类型</li>
+<li><strong>method (UploadMethod):</strong>  图片的上传类型, 可从上下文推断</li>
 </ul>
 
 <h6 id="returns">Returns</h6>
@@ -5410,22 +5438,25 @@
             <span class="name">uploadVoice</span><span class="signature">(
     self,
     data: bytes,
-    method: <a href="model.html#UploadMethod">ariadne.model.UploadMethod</a>
+    method: <a href="model.html#UploadMethod">ariadne.model.UploadMethod</a> = None
 ) -&gt; <a href="message/element.html#Voice">ariadne.message.element.Voice</a></span>:
     </div>
 
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span>    <span class="nd">@app_ctx_manager</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadVoice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Voice&quot;</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">uploadVoice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">UploadMethod</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Voice&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;上传语音到远端服务器, 需要提供: 语音的原始数据(bytes), 语音的上传类型.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            data (bytes): 语音的原始数据</span>
-<span class="sd">            method (UploadMethod): 语音的上传类型</span>
+<span class="sd">            method (UploadMethod): 语音的上传类型, 可从上下文推断</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Voice: 生成的语音消息元素</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="n">upload_method_ctx</span>
         <span class="kn">from</span> <span class="nn">.message.element</span> <span class="kn">import</span> <span class="n">Voice</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span> <span class="ow">or</span> <span class="n">upload_method_ctx</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span>
             <span class="s2">&quot;uploadVoice&quot;</span><span class="p">,</span>
@@ -5448,7 +5479,7 @@
 
 <ul>
 <li><strong>data (bytes):</strong>  语音的原始数据</li>
-<li><strong>method (UploadMethod):</strong>  语音的上传类型</li>
+<li><strong>method (UploadMethod):</strong>  语音的上传类型, 可从上下文推断</li>
 </ul>
 
 <h6 id="returns">Returns</h6>
@@ -5505,7 +5536,6 @@
         <span class="n">chat_log_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ChatLogConfig</span><span class="p">,</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">use_loguru_traceback</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">use_bypass_listener</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">await_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">disable_telemetry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">disable_logo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
@@ -5520,7 +5550,6 @@
 <span class="sd">            设置为 False 则会完全禁用聊天日志.</span>
 <span class="sd">            use_loguru_traceback (bool): 是否注入 loguru 以获得对 traceback.print_exception() 与 sys.excepthook 的完全控制.</span>
 <span class="sd">            use_bypass_listener (bool): 是否注入 BypassListener 以获得子事件监听支持.</span>
-<span class="sd">            await_task (bool): 是否等待所有 Executor 任务完成再退出.</span>
 <span class="sd">            disable_telemetry (bool): 是否禁用版本记录.</span>
 <span class="sd">            disable_logo (bool): 是否禁用 logo 显示.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5547,7 +5576,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">:</span> <span class="n">AriadneStatus</span> <span class="o">=</span> <span class="n">AriadneStatus</span><span class="o">.</span><span class="n">STOP</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remote_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_retry</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">max_retry</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">await_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">await_task</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_telemetry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">disable_telemetry</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_logo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">disable_logo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">type</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -5605,6 +5633,8 @@
 <span class="sd">        Args:</span>
 <span class="sd">            retry_interval (float, optional): Adapter 重连间隔 (s). 默认 5.0.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.event.mirai</span> <span class="kn">import</span> <span class="n">FriendEvent</span><span class="p">,</span> <span class="n">GroupEvent</span>
+
         <span class="n">retry_cnt</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Ariadne daemon started.&quot;</span><span class="p">)</span>
@@ -5621,7 +5651,14 @@
                     <span class="p">),</span>
                 <span class="p">):</span>
                     <span class="k">with</span> <span class="n">enter_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">FriendEvent</span><span class="p">):</span>
+                            <span class="k">with</span> <span class="n">enter_message_send_context</span><span class="p">(</span><span class="n">UploadMethod</span><span class="o">.</span><span class="n">Friend</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">GroupEvent</span><span class="p">):</span>
+                            <span class="k">with</span> <span class="n">enter_message_send_context</span><span class="p">(</span><span class="n">UploadMethod</span><span class="o">.</span><span class="n">Group</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">AdapterShutdowned</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
@@ -5634,7 +5671,6 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">retry_cnt</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">mirai_session</span><span class="p">)</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;daemon: adapter down, restart in </span><span class="si">{</span><span class="n">retry_interval</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
                 <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">retry_interval</span><span class="p">)</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;daemon: restarting adapter&quot;</span><span class="p">)</span>
@@ -5649,14 +5685,10 @@
             <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">current_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="n">coro</span><span class="p">:</span> <span class="n">Coroutine</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_coro</span><span class="p">()</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">==</span> <span class="s2">&quot;Broadcast.Executor&quot;</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">await_task</span><span class="p">:</span>
-                        <span class="n">t</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
-                    <span class="k">await</span> <span class="n">t</span>
-                <span class="k">elif</span> <span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">==</span> <span class="s2">&quot;print_track_async.&lt;locals&gt;.wrapper&quot;</span><span class="p">:</span>  <span class="c1"># Scheduler run</span>
+                <span class="k">if</span> <span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;Broadcast.Executor&quot;</span><span class="p">,</span> <span class="s2">&quot;print_track_async.&lt;locals&gt;.wrapper&quot;</span><span class="p">):</span>
                     <span class="n">t</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cancelling </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2"> wrapping </span><span class="si">{</span><span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">exceptions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">e</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">))</span>
 
@@ -5728,12 +5760,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">AriadneStatus</span><span class="o">.</span><span class="n">SHUTDOWN</span>
             <span class="k">await</span> <span class="n">await_predicate</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="ow">in</span> <span class="p">{</span><span class="n">AriadneStatus</span><span class="o">.</span><span class="n">CLEANUP</span><span class="p">,</span> <span class="n">AriadneStatus</span><span class="o">.</span><span class="n">STOP</span><span class="p">})</span>
 
-    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.5.0&quot;</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-function-docstring</span>
-        <span class="c1"># pylint: disable</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;use &quot;stop&quot; instead!&quot;&quot;&quot;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
     <span class="k">async</span> <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;等待直到 Ariadne 真正停止.</span>
 <span class="sd">        不要在与 Broadcast 相关的任务中使用.</span>
@@ -5742,12 +5768,6 @@
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">await_predicate</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="ow">is</span> <span class="n">AriadneStatus</span><span class="o">.</span><span class="n">STOP</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">daemon_task</span>
-
-    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.5.0&quot;</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">wait_for_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-function-docstring</span>
-        <span class="c1"># pylint: disable</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;use &quot;join&quot; instead!&quot;&quot;&quot;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">lifecycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;以 async 阻塞方式启动 Ariadne 并等待其停止.&quot;&quot;&quot;</span>
@@ -5824,7 +5844,6 @@
     chat_log_config: Union[<a href="model.html#ChatLogConfig">ariadne.model.ChatLogConfig</a>, Literal[False], NoneType] = None,
     use_loguru_traceback: Optional[bool] = True,
     use_bypass_listener: Optional[bool] = False,
-    await_task: bool = False,
     disable_telemetry: bool = False,
     disable_logo: bool = False
 )</span>
@@ -5842,7 +5861,6 @@
         <span class="n">chat_log_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ChatLogConfig</span><span class="p">,</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">use_loguru_traceback</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">use_bypass_listener</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">await_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">disable_telemetry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">disable_logo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
@@ -5857,7 +5875,6 @@
 <span class="sd">            设置为 False 则会完全禁用聊天日志.</span>
 <span class="sd">            use_loguru_traceback (bool): 是否注入 loguru 以获得对 traceback.print_exception() 与 sys.excepthook 的完全控制.</span>
 <span class="sd">            use_bypass_listener (bool): 是否注入 BypassListener 以获得子事件监听支持.</span>
-<span class="sd">            await_task (bool): 是否等待所有 Executor 任务完成再退出.</span>
 <span class="sd">            disable_telemetry (bool): 是否禁用版本记录.</span>
 <span class="sd">            disable_logo (bool): 是否禁用 logo 显示.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5884,7 +5901,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">:</span> <span class="n">AriadneStatus</span> <span class="o">=</span> <span class="n">AriadneStatus</span><span class="o">.</span><span class="n">STOP</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remote_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_retry</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">max_retry</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">await_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">await_task</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_telemetry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">disable_telemetry</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_logo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">disable_logo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">type</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -5918,7 +5934,6 @@
 <li>设置为 False 则会完全禁用聊天日志.</li>
 <li><strong>use_loguru_traceback (bool):</strong>  是否注入 loguru 以获得对 traceback.print_exception() 与 sys.excepthook 的完全控制.</li>
 <li><strong>use_bypass_listener (bool):</strong>  是否注入 BypassListener 以获得子事件监听支持.</li>
-<li><strong>await_task (bool):</strong>  是否等待所有 Executor 任务完成再退出.</li>
 <li><strong>disable_telemetry (bool):</strong>  是否禁用版本记录.</li>
 <li><strong>disable_logo (bool):</strong>  是否禁用 logo 显示.</li>
 </ul>
@@ -6006,6 +6021,8 @@
 <span class="sd">        Args:</span>
 <span class="sd">            retry_interval (float, optional): Adapter 重连间隔 (s). 默认 5.0.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.event.mirai</span> <span class="kn">import</span> <span class="n">FriendEvent</span><span class="p">,</span> <span class="n">GroupEvent</span>
+
         <span class="n">retry_cnt</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Ariadne daemon started.&quot;</span><span class="p">)</span>
@@ -6022,7 +6039,14 @@
                     <span class="p">),</span>
                 <span class="p">):</span>
                     <span class="k">with</span> <span class="n">enter_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">FriendEvent</span><span class="p">):</span>
+                            <span class="k">with</span> <span class="n">enter_message_send_context</span><span class="p">(</span><span class="n">UploadMethod</span><span class="o">.</span><span class="n">Friend</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">GroupEvent</span><span class="p">):</span>
+                            <span class="k">with</span> <span class="n">enter_message_send_context</span><span class="p">(</span><span class="n">UploadMethod</span><span class="o">.</span><span class="n">Group</span><span class="p">):</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">AdapterShutdowned</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
@@ -6035,7 +6059,6 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">retry_cnt</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">mirai_session</span><span class="p">)</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;daemon: adapter down, restart in </span><span class="si">{</span><span class="n">retry_interval</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
                 <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">retry_interval</span><span class="p">)</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;daemon: restarting adapter&quot;</span><span class="p">)</span>
@@ -6050,14 +6073,10 @@
             <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">current_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="n">coro</span><span class="p">:</span> <span class="n">Coroutine</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_coro</span><span class="p">()</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">==</span> <span class="s2">&quot;Broadcast.Executor&quot;</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">await_task</span><span class="p">:</span>
-                        <span class="n">t</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
-                    <span class="k">await</span> <span class="n">t</span>
-                <span class="k">elif</span> <span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">==</span> <span class="s2">&quot;print_track_async.&lt;locals&gt;.wrapper&quot;</span><span class="p">:</span>  <span class="c1"># Scheduler run</span>
+                <span class="k">if</span> <span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;Broadcast.Executor&quot;</span><span class="p">,</span> <span class="s2">&quot;print_track_async.&lt;locals&gt;.wrapper&quot;</span><span class="p">):</span>
                     <span class="n">t</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cancelling </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2"> wrapping </span><span class="si">{</span><span class="n">coro</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">exceptions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">e</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">))</span>
 
@@ -6179,29 +6198,6 @@
 
 
                             </div>
-                            <div id="Ariadne.request_stop" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#Ariadne.request_stop">#&nbsp;&nbsp</a>
-
-                <div class="decorator">@deprecated(&#39;0.5.0&#39;)</div>
-
-            <span class="def">def</span>
-            <span class="name">request_stop</span><span class="signature">(self)</span>:
-    </div>
-
-                <details>
-            <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.5.0&quot;</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">request_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-function-docstring</span>
-        <span class="c1"># pylint: disable</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;use &quot;stop&quot; instead!&quot;&quot;&quot;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-</pre></div>
-
-        </details>
-
-    
-
-                            </div>
                             <div id="Ariadne.join" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Ariadne.join">#&nbsp;&nbsp</a>
 
@@ -6228,29 +6224,6 @@
 不要在与 Broadcast 相关的任务中使用.</p>
 </div>
 
-
-                            </div>
-                            <div id="Ariadne.wait_for_stop" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#Ariadne.wait_for_stop">#&nbsp;&nbsp</a>
-
-                <div class="decorator">@deprecated(&#39;0.5.0&#39;)</div>
-
-            <span class="def">def</span>
-            <span class="name">wait_for_stop</span><span class="signature">(self)</span>:
-    </div>
-
-                <details>
-            <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.5.0&quot;</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">wait_for_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-function-docstring</span>
-        <span class="c1"># pylint: disable</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;use &quot;join&quot; instead!&quot;&quot;&quot;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-</pre></div>
-
-        </details>
-
-    
 
                             </div>
                             <div id="Ariadne.lifecycle" class="classattr">
