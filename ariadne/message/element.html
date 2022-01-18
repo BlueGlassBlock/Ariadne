@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="pdoc 8.1.0" />
+    <meta name="generator" content="pdoc 8.3.0" />
     <title>ariadne.message.element API documentation</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2264%22%20height%3D%2264%22%20viewBox%3D%2244.5%202.5%2015%2015%22%3E%3Cpath%20d%3D%22M49.351%2021.041c-.233-.721-.546-2.408-.772-4.076-.042-.09-.067-.187-.046-.288-.166-1.347-.277-2.625-.241-3.351-1.378-1.008-2.271-2.586-2.271-4.362%200-.976.272-1.935.788-2.774.057-.094.122-.18.184-.268-.033-.167-.052-.339-.052-.516%200-1.477%201.202-2.679%202.679-2.679.791%200%201.496.352%201.987.9a6.3%206.3%200%200%201%201.001.029c.492-.564%201.207-.929%202.012-.929%201.477%200%202.679%201.202%202.679%202.679a2.65%202.65%200%200%201-.269%201.148c.383.747.595%201.572.595%202.41%200%202.311-1.507%204.29-3.635%205.107.037.699.147%202.27.423%203.294l.137.461c.156%202.136-4.612%205.166-5.199%203.215zm.127-4.919a4.78%204.78%200%200%200%20.775-.584c-.172-.115-.505-.254-.88-.378zm.331%202.302l.828-.502c-.202-.143-.576-.328-.984-.49zm.45%202.157l.701-.403c-.214-.115-.536-.249-.891-.376l.19.779zM49.13%204.141c0%20.152.123.276.276.276s.275-.124.275-.276-.123-.276-.276-.276-.275.124-.275.276zm.735-.389a1.15%201.15%200%200%201%20.314.783%201.16%201.16%200%200%201-1.162%201.162c-.457%200-.842-.27-1.032-.653-.026.117-.042.238-.042.362a1.68%201.68%200%200%200%201.679%201.679%201.68%201.68%200%200%200%201.679-1.679c0-.843-.626-1.535-1.436-1.654zm3.076%201.654a1.68%201.68%200%200%200%201.679%201.679%201.68%201.68%200%200%200%201.679-1.679c0-.037-.009-.072-.011-.109-.21.3-.541.508-.935.508a1.16%201.16%200%200%201-1.162-1.162%201.14%201.14%200%200%201%20.474-.912c-.015%200-.03-.005-.045-.005-.926.001-1.679.754-1.679%201.68zm1.861-1.265c0%20.152.123.276.276.276s.275-.124.275-.276-.123-.276-.276-.276-.275.124-.275.276zm1.823%204.823c0-.52-.103-1.035-.288-1.52-.466.394-1.06.64-1.717.64-1.144%200-2.116-.725-2.499-1.738-.383%201.012-1.355%201.738-2.499%201.738-.867%200-1.631-.421-2.121-1.062-.307.605-.478%201.267-.478%201.942%200%202.486%202.153%204.51%204.801%204.51s4.801-2.023%204.801-4.51zm-3.032%209.156l-.146-.492c-.276-1.02-.395-2.457-.444-3.268a6.11%206.11%200%200%201-1.18.115%206.01%206.01%200%200%201-2.536-.562l.006.175c.802.215%201.848.612%202.021%201.25.079.295-.021.601-.274.837l-.598.501c.667.304%201.243.698%201.311%201.179.02.144.022.507-.393.787l-.564.365c1.285.521%201.361.96%201.381%201.126.018.142.011.496-.427.746l-.854.489c.064-1.19%201.985-2.585%202.697-3.248zM49.34%209.925c0-.667%201-.667%201%200%200%20.653.818%201.205%201.787%201.205s1.787-.552%201.787-1.205c0-.667%201-.667%201%200%200%201.216-1.25%202.205-2.787%202.205s-2.787-.989-2.787-2.205zm-.887-7.633c-.093.077-.205.114-.317.114a.5.5%200%200%201-.318-.886L49.183.397a.5.5%200%200%201%20.703.068.5.5%200%200%201-.069.703zm7.661-.065c-.086%200-.173-.022-.253-.068l-1.523-.893c-.575-.337-.069-1.2.506-.863l1.523.892a.5.5%200%200%201%20.179.685c-.094.158-.261.247-.432.247z%22%20fill%3D%22%233bb300%22/%3E%3C/svg%3E"/>
 
 
 <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
 <style>/*! pygments syntax highlighting */pre{line-height:125%;}td.linenos pre{color:#000000; background-color:#f0f0f0; padding-left:5px; padding-right:5px;}span.linenos{color:#000000; background-color:#f0f0f0; padding-left:5px; padding-right:5px;}td.linenos pre.special{color:#000000; background-color:#ffffc0; padding-left:5px; padding-right:5px;}span.linenos.special{color:#000000; background-color:#ffffc0; padding-left:5px; padding-right:5px;}.pdoc .hll{background-color:#ffffcc}.pdoc{background:#f8f8f8;}.pdoc .c{color:#408080; font-style:italic}.pdoc .err{border:1px solid #FF0000}.pdoc .k{color:#008000; font-weight:bold}.pdoc .o{color:#666666}.pdoc .ch{color:#408080; font-style:italic}.pdoc .cm{color:#408080; font-style:italic}.pdoc .cp{color:#BC7A00}.pdoc .cpf{color:#408080; font-style:italic}.pdoc .c1{color:#408080; font-style:italic}.pdoc .cs{color:#408080; font-style:italic}.pdoc .gd{color:#A00000}.pdoc .ge{font-style:italic}.pdoc .gr{color:#FF0000}.pdoc .gh{color:#000080; font-weight:bold}.pdoc .gi{color:#00A000}.pdoc .go{color:#888888}.pdoc .gp{color:#000080; font-weight:bold}.pdoc .gs{font-weight:bold}.pdoc .gu{color:#800080; font-weight:bold}.pdoc .gt{color:#0044DD}.pdoc .kc{color:#008000; font-weight:bold}.pdoc .kd{color:#008000; font-weight:bold}.pdoc .kn{color:#008000; font-weight:bold}.pdoc .kp{color:#008000}.pdoc .kr{color:#008000; font-weight:bold}.pdoc .kt{color:#B00040}.pdoc .m{color:#666666}.pdoc .s{color:#BA2121}.pdoc .na{color:#7D9029}.pdoc .nb{color:#008000}.pdoc .nc{color:#0000FF; font-weight:bold}.pdoc .no{color:#880000}.pdoc .nd{color:#AA22FF}.pdoc .ni{color:#999999; font-weight:bold}.pdoc .ne{color:#D2413A; font-weight:bold}.pdoc .nf{color:#0000FF}.pdoc .nl{color:#A0A000}.pdoc .nn{color:#0000FF; font-weight:bold}.pdoc .nt{color:#008000; font-weight:bold}.pdoc .nv{color:#19177C}.pdoc .ow{color:#AA22FF; font-weight:bold}.pdoc .w{color:#bbbbbb}.pdoc .mb{color:#666666}.pdoc .mf{color:#666666}.pdoc .mh{color:#666666}.pdoc .mi{color:#666666}.pdoc .mo{color:#666666}.pdoc .sa{color:#BA2121}.pdoc .sb{color:#BA2121}.pdoc .sc{color:#BA2121}.pdoc .dl{color:#BA2121}.pdoc .sd{color:#BA2121; font-style:italic}.pdoc .s2{color:#BA2121}.pdoc .se{color:#BB6622; font-weight:bold}.pdoc .sh{color:#BA2121}.pdoc .si{color:#BB6688; font-weight:bold}.pdoc .sx{color:#008000}.pdoc .sr{color:#BB6688}.pdoc .s1{color:#BA2121}.pdoc .ss{color:#19177C}.pdoc .bp{color:#008000}.pdoc .fm{color:#0000FF}.pdoc .vc{color:#19177C}.pdoc .vg{color:#19177C}.pdoc .vi{color:#19177C}.pdoc .vm{color:#19177C}.pdoc .il{color:#666666}</style>
-<style>/*! pdoc */:root{--pdoc-background:#fff;}.pdoc{--text:#212529;--muted:#6c757d;--link:#3660a5;--link-hover:#1659c5;--code:#f7f7f7;--active:#fff598;--accent:#eee;--accent2:#c1c1c1;--nav-hover:rgba(255, 255, 255, 0.5);--name:#0066BB;--def:#008800;--annotation:#007020;}body{background-color:var(--pdoc-background);}html, body{width:100%;height:100%;}@media (max-width:769px){#navtoggle{cursor:pointer;position:absolute;width:50px;height:40px;top:1rem;right:1rem;border-color:var(--text);color:var(--text);display:flex;opacity:0.8;}#navtoggle:hover{opacity:1;}#togglestate + div{display:none;}#togglestate:checked + div{display:inherit;}main, header{padding:2rem 3vw;}.git-button{display:none !important;}nav input[type="search"]:valid ~ *{display:none !important;}}@media (min-width:770px){:root{--sidebar-width:clamp(12.5rem, 28vw, 22rem);}nav{position:fixed;overflow:auto;height:100vh;width:var(--sidebar-width);}main, header{padding:3rem 2rem 3rem calc(var(--sidebar-width) + 3rem);width:calc(54rem + var(--sidebar-width));max-width:100%;}#navtoggle{display:none;}}#togglestate{display:none;}nav.pdoc{--pad:1.75rem;--indent:1.5rem;background-color:var(--accent);border-right:1px solid var(--accent2);box-shadow:0 0 20px rgba(50, 50, 50, .2) inset;padding:0 0 0 var(--pad);overflow-wrap:anywhere;scrollbar-width:thin; scrollbar-color:var(--accent2) transparent }nav.pdoc::-webkit-scrollbar{width:.4rem; }nav.pdoc::-webkit-scrollbar-thumb{background-color:var(--accent2); }nav.pdoc > div{padding:var(--pad) 0;}nav.pdoc .module-list-button{display:inline-flex;align-items:center;color:var(--text);border-color:var(--muted);margin-bottom:1rem;}nav.pdoc .module-list-button:hover{border-color:var(--text);}nav.pdoc input[type=search]{display:block;outline-offset:0;width:calc(100% - var(--pad));}nav.pdoc .logo{max-width:calc(100% - var(--pad));max-height:35vh;display:block;margin:0 auto 1rem;transform:translate(calc(-.5 * var(--pad)), 0);}nav.pdoc ul{list-style:none;padding-left:0;}nav.pdoc li{display:block;margin:0;padding:.2rem 0 .2rem var(--indent);transition:all 100ms;}nav.pdoc > div > ul > li{padding-left:0;}nav.pdoc li:hover{background-color:var(--nav-hover);}nav.pdoc a, nav.pdoc a:hover{color:var(--text);}nav.pdoc a{display:block;}nav.pdoc > h2:first-of-type{margin-top:1.5rem;}nav.pdoc .class:before{content:"class ";color:var(--muted);}nav.pdoc .function:after{content:"()";color:var(--muted);}nav.pdoc footer:before{content:"";display:block;width:calc(100% - var(--pad));border-top:solid var(--accent2) 1px;margin-top:1.5rem;padding-top:.5rem;}nav.pdoc footer{font-size:small;}html, main{scroll-behavior:smooth;}.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{background-color:var(--code);border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--code);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.pdoc details{--shift:-40px;text-align:right;margin-top:var(--shift);margin-bottom:calc(0px - var(--shift));clear:both;filter:opacity(1);}.pdoc details:not([open]){height:0;overflow:visible;}.pdoc details > summary{font-size:.75rem;cursor:pointer;color:var(--muted);border-width:0;padding:0 .7em;display:inline-block;display:inline list-item;user-select:none;}.pdoc details > summary:focus{outline:0;}.pdoc details > div{margin-top:calc(0px - var(--shift) / 2);text-align:left;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc > section:first-of-type > .docstring{margin-bottom:3rem;}.pdoc .docstring pre{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc .headerlink{position:absolute;width:0;margin-left:-1.5rem;line-height:1.4rem;font-size:1.5rem;font-weight:normal;transition:all 100ms ease-in-out;opacity:0;}.pdoc .attr > .headerlink{margin-left:-2.5rem;}.pdoc *:hover > .headerlink,.pdoc *:target > .attr > .headerlink{opacity:1;}.pdoc .attr{display:block;color:var(--text);margin:1rem 0 .5rem;padding:.4rem 5rem .4rem 1rem;background-color:var(--accent);}.pdoc .classattr{margin-left:2rem;}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{white-space:pre-wrap;}.pdoc .annotation{color:var(--annotation);}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:35px;vertical-align:middle;width:70px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
+<style>/*! pdoc */:root{--pdoc-background:#fff;}.pdoc{--text:#212529;--muted:#6c757d;--link:#3660a5;--link-hover:#1659c5;--code:#f7f7f7;--active:#fff598;--accent:#eee;--accent2:#c1c1c1;--nav-hover:rgba(255, 255, 255, 0.5);--name:#0066BB;--def:#008800;--annotation:#007020;}body{background-color:var(--pdoc-background);}html, body{width:100%;height:100%;}@media (max-width:769px){#navtoggle{cursor:pointer;position:absolute;width:50px;height:40px;top:1rem;right:1rem;border-color:var(--text);color:var(--text);display:flex;opacity:0.8;}#navtoggle:hover{opacity:1;}#togglestate + div{display:none;}#togglestate:checked + div{display:inherit;}main, header{padding:2rem 3vw;}.git-button{display:none !important;}nav input[type="search"]:valid ~ *{display:none !important;}}@media (min-width:770px){:root{--sidebar-width:clamp(12.5rem, 28vw, 22rem);}nav{position:fixed;overflow:auto;height:100vh;width:var(--sidebar-width);}main, header{padding:3rem 2rem 3rem calc(var(--sidebar-width) + 3rem);width:calc(54rem + var(--sidebar-width));max-width:100%;}#navtoggle{display:none;}}#togglestate{display:none;}nav.pdoc{--pad:1.75rem;--indent:1.5rem;background-color:var(--accent);border-right:1px solid var(--accent2);box-shadow:0 0 20px rgba(50, 50, 50, .2) inset;padding:0 0 0 var(--pad);overflow-wrap:anywhere;scrollbar-width:thin; scrollbar-color:var(--accent2) transparent }nav.pdoc::-webkit-scrollbar{width:.4rem; }nav.pdoc::-webkit-scrollbar-thumb{background-color:var(--accent2); }nav.pdoc > div{padding:var(--pad) 0;}nav.pdoc .module-list-button{display:inline-flex;align-items:center;color:var(--text);border-color:var(--muted);margin-bottom:1rem;}nav.pdoc .module-list-button:hover{border-color:var(--text);}nav.pdoc input[type=search]{display:block;outline-offset:0;width:calc(100% - var(--pad));}nav.pdoc .logo{max-width:calc(100% - var(--pad));max-height:35vh;display:block;margin:0 auto 1rem;transform:translate(calc(-.5 * var(--pad)), 0);}nav.pdoc ul{list-style:none;padding-left:0;}nav.pdoc li{display:block;margin:0;padding:.2rem 0 .2rem var(--indent);transition:all 100ms;}nav.pdoc > div > ul > li{padding-left:0;}nav.pdoc li:hover{background-color:var(--nav-hover);}nav.pdoc a, nav.pdoc a:hover{color:var(--text);}nav.pdoc a{display:block;}nav.pdoc > h2:first-of-type{margin-top:1.5rem;}nav.pdoc .class:before{content:"class ";color:var(--muted);}nav.pdoc .function:after{content:"()";color:var(--muted);}nav.pdoc footer:before{content:"";display:block;width:calc(100% - var(--pad));border-top:solid var(--accent2) 1px;margin-top:1.5rem;padding-top:.5rem;}nav.pdoc footer{font-size:small;}html, main{scroll-behavior:smooth;}.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{background-color:var(--code);border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--code);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.pdoc details{filter:opacity(1);}.pdoc details:not([open]){height:0;}.pdoc details > summary{position:absolute;top:-35px;right:0;font-size:.75rem;color:var(--muted);padding:0 .7em;user-select:none;}.pdoc details > summary:focus{outline:0;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc > section:first-of-type > .docstring{margin-bottom:2.5rem;}.pdoc .docstring pre{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc .headerlink{position:absolute;width:0;margin-left:-1.5rem;line-height:1.4rem;font-size:1.5rem;font-weight:normal;transition:all 100ms ease-in-out;opacity:0;user-select:none;}.pdoc .attr > .headerlink{margin-left:-2.5rem;}.pdoc *:hover > .headerlink,.pdoc *:target > .attr > .headerlink{opacity:1;}.pdoc .attr{display:block;color:var(--text);margin:.5rem 0 .5rem;padding:.4rem 5rem .4rem 1rem;background-color:var(--accent);}.pdoc .classattr{margin-left:2rem;}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{white-space:pre-wrap;}.pdoc .annotation{color:var(--annotation);}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:35px;vertical-align:middle;width:70px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
 </head>
 <body>        <nav class="pdoc">
             <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke-linecap='round' stroke="currentColor" stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg></label>
@@ -40,6 +40,9 @@
                     <a class="class" href="#Element">Element</a>
                             <ul class="memberlist">
                         <li>
+                                <a class="variable" href="#Element.type">type</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#Element.asDisplay">asDisplay</a>
                         </li>
                         <li>
@@ -58,6 +61,12 @@
                                 <a class="function" href="#Plain.__init__">Plain</a>
                         </li>
                         <li>
+                                <a class="variable" href="#Plain.type">type</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Plain.text">text</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#Plain.asDisplay">asDisplay</a>
                         </li>
                         <li>
@@ -69,6 +78,15 @@
             <li>
                     <a class="class" href="#Source">Source</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#Source.type">type</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Source.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Source.time">time</a>
+                        </li>
                         <li>
                                 <a class="function" href="#Source.prepare">prepare</a>
                         </li>
@@ -85,6 +103,24 @@
                     <a class="class" href="#Quote">Quote</a>
                             <ul class="memberlist">
                         <li>
+                                <a class="variable" href="#Quote.type">type</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Quote.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Quote.groupId">groupId</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Quote.senderId">senderId</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Quote.targetId">targetId</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Quote.origin">origin</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#Quote.prepare">prepare</a>
                         </li>
                         <li>
@@ -98,6 +134,15 @@
                             <ul class="memberlist">
                         <li>
                                 <a class="function" href="#At.__init__">At</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#At.type">type</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#At.target">target</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#At.display">display</a>
                         </li>
                         <li>
                                 <a class="function" href="#At.prepare">prepare</a>
@@ -115,6 +160,9 @@
                                 <a class="function" href="#AtAll.__init__">AtAll</a>
                         </li>
                         <li>
+                                <a class="variable" href="#AtAll.type">type</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#AtAll.asDisplay">asDisplay</a>
                         </li>
                         <li>
@@ -130,6 +178,15 @@
                                 <a class="function" href="#Face.__init__">Face</a>
                         </li>
                         <li>
+                                <a class="variable" href="#Face.type">type</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Face.faceId">faceId</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Face.name">name</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#Face.asDisplay">asDisplay</a>
                         </li>
                 </ul>
@@ -138,6 +195,9 @@
             <li>
                     <a class="class" href="#Xml">Xml</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#Xml.xml">xml</a>
+                        </li>
                         <li>
                                 <a class="function" href="#Xml.asDisplay">asDisplay</a>
                         </li>
@@ -151,6 +211,9 @@
                                 <a class="function" href="#Json.__init__">Json</a>
                         </li>
                         <li>
+                                <a class="variable" href="#Json.Json">Json</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#Json.dict">dict</a>
                         </li>
                         <li>
@@ -162,6 +225,9 @@
             <li>
                     <a class="class" href="#App">App</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#App.content">content</a>
+                        </li>
                         <li>
                                 <a class="function" href="#App.asDisplay">asDisplay</a>
                         </li>
@@ -229,6 +295,9 @@
                                 <a class="function" href="#Poke.__init__">Poke</a>
                         </li>
                         <li>
+                                <a class="variable" href="#Poke.name">name</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#Poke.asDisplay">asDisplay</a>
                         </li>
                 </ul>
@@ -239,6 +308,9 @@
                             <ul class="memberlist">
                         <li>
                                 <a class="function" href="#Dice.__init__">Dice</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Dice.value">value</a>
                         </li>
                         <li>
                                 <a class="function" href="#Dice.asDisplay">asDisplay</a>
@@ -261,6 +333,21 @@
                         <li>
                                 <a class="function" href="#ForwardNode.__init__">ForwardNode</a>
                         </li>
+                        <li>
+                                <a class="variable" href="#ForwardNode.senderId">senderId</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ForwardNode.time">time</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ForwardNode.senderName">senderName</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ForwardNode.messageChain">messageChain</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ForwardNode.messageId">messageId</a>
+                        </li>
                 </ul>
 
             </li>
@@ -269,6 +356,9 @@
                             <ul class="memberlist">
                         <li>
                                 <a class="function" href="#Forward.__init__">Forward</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Forward.nodeList">nodeList</a>
                         </li>
                         <li>
                                 <a class="function" href="#Forward.asDisplay">asDisplay</a>
@@ -283,10 +373,22 @@
                     <a class="class" href="#File">File</a>
                             <ul class="memberlist">
                         <li>
+                                <a class="variable" href="#File.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#File.name">name</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#File.size">size</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#File.asDisplay">asDisplay</a>
                         </li>
                         <li>
                                 <a class="function" href="#File.asPersistentString">asPersistentString</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#File.prepare">prepare</a>
                         </li>
                 </ul>
 
@@ -294,6 +396,9 @@
             <li>
                     <a class="class" href="#MiraiCode">MiraiCode</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#MiraiCode.code">code</a>
+                        </li>
                 </ul>
 
             </li>
@@ -322,6 +427,15 @@
                                 <a class="function" href="#MultimediaElement.__init__">MultimediaElement</a>
                         </li>
                         <li>
+                                <a class="variable" href="#MultimediaElement.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MultimediaElement.url">url</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MultimediaElement.base64">base64</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#MultimediaElement.get_bytes">get_bytes</a>
                         </li>
                         <li>
@@ -336,6 +450,9 @@
             <li>
                     <a class="class" href="#Image">Image</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#Image.id">id</a>
+                        </li>
                         <li>
                                 <a class="function" href="#Image.toFlashImage">toFlashImage</a>
                         </li>
@@ -366,6 +483,12 @@
             <li>
                     <a class="class" href="#Voice">Voice</a>
                             <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#Voice.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Voice.length">length</a>
+                        </li>
                         <li>
                                 <a class="function" href="#Voice.asDisplay">asDisplay</a>
                         </li>
@@ -430,6 +553,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;元素类型&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">),)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
@@ -481,7 +605,9 @@
     <span class="sd">&quot;&quot;&quot;代表消息中的文本元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Plain&quot;</span>
+
     <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;实际的文本&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;实例化一个 Plain 消息元素, 用于承载消息中的文字.</span>
@@ -502,8 +628,12 @@
     <span class="sd">&quot;&quot;&quot;表示消息在一个特定聊天区域内的唯一标识&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Source&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;消息 ID&quot;&quot;&quot;</span>
+
     <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="sd">&quot;&quot;&quot;发送时间&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">NotSendableElement</span>
@@ -528,11 +658,21 @@
     <span class="sd">&quot;&quot;&quot;表示消息中回复其他消息/用户的部分, 通常包含一个完整的消息链(`origin` 属性)&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Quote&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;引用的消息 ID&quot;&quot;&quot;</span>
+
     <span class="n">groupId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;引用消息所在群号 (好友消息为 0)&quot;&quot;&quot;</span>
+
     <span class="n">senderId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;发送者 QQ 号&quot;&quot;&quot;</span>
+
     <span class="n">targetId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;原消息的接收者QQ号 (或群号) &quot;&quot;&quot;</span>
+
     <span class="n">origin</span><span class="p">:</span> <span class="s2">&quot;MessageChain&quot;</span>
+    <span class="sd">&quot;&quot;&quot;原来的消息链&quot;&quot;&quot;</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;origin&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
@@ -551,8 +691,12 @@
     <span class="sd">&quot;&quot;&quot;该消息元素用于承载消息中用于提醒/呼唤特定用户的部分.&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;At&quot;</span>
+
     <span class="n">target</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;At 的目标 QQ 号&quot;&quot;&quot;</span>
+
     <span class="n">display</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;显示名称&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Member</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;实例化一个 At 消息元素, 用于承载消息中用于提醒/呼唤特定用户的部分.</span>
@@ -608,8 +752,12 @@
     <span class="sd">&quot;&quot;&quot;表示消息中所附带的表情, 这些表情大多都是聊天工具内置的.&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Face&quot;</span>
+
     <span class="n">faceId</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;QQ 表情编号, 优先于 name&quot;&quot;&quot;</span>
+
     <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;QQ 表情名称&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="o">...</span><span class="p">:</span>
@@ -619,7 +767,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[表情:</span><span class="si">{</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">faceId</span><span class="p">}</span><span class="si">}</span><span class="s2">]&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[表情: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">faceId</span><span class="si">}</span><span class="s2">]&quot;</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Face&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Face</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">faceId</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">faceId</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -629,7 +777,9 @@
     <span class="sd">&quot;&quot;&quot;表示消息中的 XML 消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Xml&quot;</span>
+
     <span class="n">xml</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;XML文本&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;[XML消息]&quot;</span>
@@ -639,7 +789,9 @@
     <span class="sd">&quot;&quot;&quot;表示消息中的 JSON 消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Json&quot;</span>
+
     <span class="n">Json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;XML文本&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
@@ -657,38 +809,73 @@
     <span class="sd">&quot;&quot;&quot;表示消息中自带的 App 消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;App&quot;</span>
+
     <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;App 内容&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;[APP消息]&quot;</span>
 
 
-<span class="k">class</span> <span class="nc">PokeMethods</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PokeMethods</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;戳一戳可用方法&quot;&quot;&quot;</span>
 
     <span class="n">ChuoYiChuo</span> <span class="o">=</span> <span class="s2">&quot;ChuoYiChuo&quot;</span>
+    <span class="sd">&quot;&quot;&quot;戳一戳&quot;&quot;&quot;</span>
+
     <span class="n">BiXin</span> <span class="o">=</span> <span class="s2">&quot;BiXin&quot;</span>
+    <span class="sd">&quot;&quot;&quot;比心&quot;&quot;&quot;</span>
+
     <span class="n">DianZan</span> <span class="o">=</span> <span class="s2">&quot;DianZan&quot;</span>
+    <span class="sd">&quot;&quot;&quot;点赞&quot;&quot;&quot;</span>
+
     <span class="n">XinSui</span> <span class="o">=</span> <span class="s2">&quot;XinSui&quot;</span>
+    <span class="sd">&quot;&quot;&quot;心碎&quot;&quot;&quot;</span>
+
     <span class="n">LiuLiuLiu</span> <span class="o">=</span> <span class="s2">&quot;LiuLiuLiu&quot;</span>
+    <span class="sd">&quot;&quot;&quot;666&quot;&quot;&quot;</span>
+
     <span class="n">FangDaZhao</span> <span class="o">=</span> <span class="s2">&quot;FangDaZhao&quot;</span>
+    <span class="sd">&quot;&quot;&quot;放大招&quot;&quot;&quot;</span>
+
     <span class="n">BaoBeiQiu</span> <span class="o">=</span> <span class="s2">&quot;BaoBeiQiu&quot;</span>
+    <span class="sd">&quot;&quot;&quot;宝贝球&quot;&quot;&quot;</span>
+
     <span class="n">Rose</span> <span class="o">=</span> <span class="s2">&quot;Rose&quot;</span>
+    <span class="sd">&quot;&quot;&quot;玫瑰花&quot;&quot;&quot;</span>
+
     <span class="n">ZhaoHuanShu</span> <span class="o">=</span> <span class="s2">&quot;ZhaoHuanShu&quot;</span>
+    <span class="sd">&quot;&quot;&quot;召唤术&quot;&quot;&quot;</span>
+
     <span class="n">RangNiPi</span> <span class="o">=</span> <span class="s2">&quot;RangNiPi&quot;</span>
+    <span class="sd">&quot;&quot;&quot;让你皮&quot;&quot;&quot;</span>
+
     <span class="n">JeiYin</span> <span class="o">=</span> <span class="s2">&quot;JeiYin&quot;</span>
+    <span class="sd">&quot;&quot;&quot;结印&quot;&quot;&quot;</span>
+
     <span class="n">ShouLei</span> <span class="o">=</span> <span class="s2">&quot;ShouLei&quot;</span>
+    <span class="sd">&quot;&quot;&quot;手雷&quot;&quot;&quot;</span>
+
     <span class="n">GouYin</span> <span class="o">=</span> <span class="s2">&quot;GouYin&quot;</span>
+    <span class="sd">&quot;&quot;&quot;勾引&quot;&quot;&quot;</span>
+
     <span class="n">ZhuaYiXia</span> <span class="o">=</span> <span class="s2">&quot;ZhuaYiXia&quot;</span>
+    <span class="sd">&quot;&quot;&quot;抓一下&quot;&quot;&quot;</span>
+
     <span class="n">SuiPing</span> <span class="o">=</span> <span class="s2">&quot;SuiPing&quot;</span>
+    <span class="sd">&quot;&quot;&quot;碎屏&quot;&quot;&quot;</span>
+
     <span class="n">QiaoMen</span> <span class="o">=</span> <span class="s2">&quot;QiaoMen&quot;</span>
+    <span class="sd">&quot;&quot;&quot;敲门&quot;&quot;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">Poke</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;表示消息中戳一戳消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Poke&quot;</span>
+
     <span class="n">name</span><span class="p">:</span> <span class="n">PokeMethods</span>
+    <span class="sd">&quot;&quot;&quot;戳一戳使用的方法&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">PokeMethods</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
@@ -701,7 +888,9 @@
     <span class="sd">&quot;&quot;&quot;表示消息中骰子消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Dice&quot;</span>
+
     <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;骰子值&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
@@ -730,10 +919,19 @@
     <span class="sd">&quot;&quot;&quot;表示合并转发中的一个节点&quot;&quot;&quot;</span>
 
     <span class="n">senderId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;发送者 QQ 号 (决定显示头像)&quot;&quot;&quot;</span>
+
     <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="sd">&quot;&quot;&quot;发送时间&quot;&quot;&quot;</span>
+
     <span class="n">senderName</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;发送者显示名字&quot;&quot;&quot;</span>
+
     <span class="n">messageChain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;MessageChain&quot;</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;发送的消息链&quot;&quot;&quot;</span>
+
     <span class="n">messageId</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;缓存的消息 ID&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -769,7 +967,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Forward&quot;</span>
+
     <span class="n">nodeList</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ForwardNode</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;转发节点列表&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="n">ForwardNode</span><span class="p">],</span> <span class="n">ForwardNode</span><span class="p">],</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">nodes</span><span class="p">:</span>
@@ -793,9 +993,15 @@
     <span class="sd">&quot;&quot;&quot;指示一个文件信息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;File&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;文件 ID&quot;&quot;&quot;</span>
+
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;文件名&quot;&quot;&quot;</span>
+
     <span class="n">size</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;文件大小&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[文件:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]&quot;</span>
@@ -803,21 +1009,33 @@
     <span class="k">def</span> <span class="nf">asPersistentString</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotSendableElement</span>
+
 
 <span class="k">class</span> <span class="nc">MiraiCode</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Mirai 码, 并不建议直接使用. Ariadne 也不会提供互转换接口.&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;MiraiCode&quot;</span>
+
     <span class="n">code</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Mirai Code&quot;&quot;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">ImageType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Image 类型的枚举.&quot;&quot;&quot;</span>
 
     <span class="n">Friend</span> <span class="o">=</span> <span class="s2">&quot;Friend&quot;</span>
+    <span class="sd">&quot;&quot;&quot;好友消息&quot;&quot;&quot;</span>
+
     <span class="n">Group</span> <span class="o">=</span> <span class="s2">&quot;Group&quot;</span>
+    <span class="sd">&quot;&quot;&quot;群组消息&quot;&quot;&quot;</span>
+
     <span class="n">Temp</span> <span class="o">=</span> <span class="s2">&quot;Temp&quot;</span>
+    <span class="sd">&quot;&quot;&quot;临时消息&quot;&quot;&quot;</span>
+
     <span class="n">Unknown</span> <span class="o">=</span> <span class="s2">&quot;Unknown&quot;</span>
+    <span class="sd">&quot;&quot;&quot;未知消息&quot;&quot;&quot;</span>
 
 
 <span class="n">image_upload_method_type_map</span> <span class="o">=</span> <span class="p">{</span>
@@ -831,8 +1049,13 @@
     <span class="sd">&quot;&quot;&quot;指示多媒体消息元素.&quot;&quot;&quot;</span>
 
     <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;元素 ID&quot;&quot;&quot;</span>
+
     <span class="n">url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;元素的下载 url&quot;&quot;&quot;</span>
+
     <span class="n">base64</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;元素的 base64&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -909,7 +1132,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;返回多媒体元素的 uuid, 即元素在 mirai 内部的标识&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;多媒体元素的 uuid, 即元素在 mirai 内部的标识&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span>
@@ -930,6 +1153,7 @@
     <span class="sd">&quot;&quot;&quot;指示消息中的图片元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Image&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;imageId&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">toFlashImage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FlashImage&quot;</span><span class="p">:</span>
@@ -983,8 +1207,11 @@
     <span class="sd">&quot;&quot;&quot;指示消息中的语音元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Voice&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;voiceId&quot;</span><span class="p">)</span>
+
     <span class="n">length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;语音长度&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;[语音]&quot;</span>
@@ -1062,6 +1289,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;元素类型&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">),)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
@@ -1116,6 +1344,17 @@ type (str): 元素类型</p>
 </div>
 
 
+                            <div id="Element.type" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Element.type">#&nbsp;&nbsp</a>
+
+        <span class="name">type</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>元素类型</p>
+</div>
+
+
+                            </div>
                             <div id="Element.asDisplay" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Element.asDisplay">#&nbsp;&nbsp</a>
 
@@ -1265,7 +1504,9 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;代表消息中的文本元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Plain&quot;</span>
+
     <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;实际的文本&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;实例化一个 Plain 消息元素, 用于承载消息中的文字.</span>
@@ -1315,6 +1556,28 @@ type (str): 元素类型</p>
 <ul>
 <li><strong>text (str):</strong>  元素所包含的文字</li>
 </ul>
+</div>
+
+
+                            </div>
+                            <div id="Plain.type" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Plain.type">#&nbsp;&nbsp</a>
+
+        <span class="name">type</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>元素类型</p>
+</div>
+
+
+                            </div>
+                            <div id="Plain.text" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Plain.text">#&nbsp;&nbsp</a>
+
+        <span class="name">text</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>实际的文本</p>
 </div>
 
 
@@ -1417,8 +1680,12 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;表示消息在一个特定聊天区域内的唯一标识&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Source&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;消息 ID&quot;&quot;&quot;</span>
+
     <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="sd">&quot;&quot;&quot;发送时间&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">NotSendableElement</span>
@@ -1445,6 +1712,39 @@ type (str): 元素类型</p>
 </div>
 
 
+                            <div id="Source.type" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Source.type">#&nbsp;&nbsp</a>
+
+        <span class="name">type</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>元素类型</p>
+</div>
+
+
+                            </div>
+                            <div id="Source.id" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Source.id">#&nbsp;&nbsp</a>
+
+        <span class="name">id</span><span class="annotation">: int</span>
+    </div>
+
+            <div class="docstring"><p>消息 ID</p>
+</div>
+
+
+                            </div>
+                            <div id="Source.time" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Source.time">#&nbsp;&nbsp</a>
+
+        <span class="name">time</span><span class="annotation">: datetime.datetime</span>
+    </div>
+
+            <div class="docstring"><p>发送时间</p>
+</div>
+
+
+                            </div>
                             <div id="Source.prepare" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Source.prepare">#&nbsp;&nbsp</a>
 
@@ -1579,11 +1879,21 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;表示消息中回复其他消息/用户的部分, 通常包含一个完整的消息链(`origin` 属性)&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Quote&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;引用的消息 ID&quot;&quot;&quot;</span>
+
     <span class="n">groupId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;引用消息所在群号 (好友消息为 0)&quot;&quot;&quot;</span>
+
     <span class="n">senderId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;发送者 QQ 号&quot;&quot;&quot;</span>
+
     <span class="n">targetId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;原消息的接收者QQ号 (或群号) &quot;&quot;&quot;</span>
+
     <span class="n">origin</span><span class="p">:</span> <span class="s2">&quot;MessageChain&quot;</span>
+    <span class="sd">&quot;&quot;&quot;原来的消息链&quot;&quot;&quot;</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;origin&quot;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
@@ -1600,10 +1910,76 @@ type (str): 元素类型</p>
 
         </details>
 
-            <div class="docstring"><p>表示消息中回复其他消息/用户的部分, 通常包含一个完整的消息链(<code>origin</code> 属性)</p>
+            <div class="docstring"><p>表示消息中回复其他消息/用户的部分, 通常包含一个完整的消息链(<code><a href="#Quote.origin">origin</a></code> 属性)</p>
 </div>
 
 
+                            <div id="Quote.type" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Quote.type">#&nbsp;&nbsp</a>
+
+        <span class="name">type</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>元素类型</p>
+</div>
+
+
+                            </div>
+                            <div id="Quote.id" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Quote.id">#&nbsp;&nbsp</a>
+
+        <span class="name">id</span><span class="annotation">: int</span>
+    </div>
+
+            <div class="docstring"><p>引用的消息 ID</p>
+</div>
+
+
+                            </div>
+                            <div id="Quote.groupId" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Quote.groupId">#&nbsp;&nbsp</a>
+
+        <span class="name">groupId</span><span class="annotation">: int</span>
+    </div>
+
+            <div class="docstring"><p>引用消息所在群号 (好友消息为 0)</p>
+</div>
+
+
+                            </div>
+                            <div id="Quote.senderId" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Quote.senderId">#&nbsp;&nbsp</a>
+
+        <span class="name">senderId</span><span class="annotation">: int</span>
+    </div>
+
+            <div class="docstring"><p>发送者 QQ 号</p>
+</div>
+
+
+                            </div>
+                            <div id="Quote.targetId" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Quote.targetId">#&nbsp;&nbsp</a>
+
+        <span class="name">targetId</span><span class="annotation">: int</span>
+    </div>
+
+            <div class="docstring"><p>原消息的接收者QQ号 (或群号)</p>
+</div>
+
+
+                            </div>
+                            <div id="Quote.origin" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Quote.origin">#&nbsp;&nbsp</a>
+
+        <span class="name">origin</span><span class="annotation">: <a href="chain.html#MessageChain">ariadne.message.chain.MessageChain</a></span>
+    </div>
+
+            <div class="docstring"><p>原来的消息链</p>
+</div>
+
+
+                            </div>
                             <div id="Quote.prepare" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Quote.prepare">#&nbsp;&nbsp</a>
 
@@ -1702,8 +2078,12 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;该消息元素用于承载消息中用于提醒/呼唤特定用户的部分.&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;At&quot;</span>
+
     <span class="n">target</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;At 的目标 QQ 号&quot;&quot;&quot;</span>
+
     <span class="n">display</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;显示名称&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Member</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;实例化一个 At 消息元素, 用于承载消息中用于提醒/呼唤特定用户的部分.</span>
@@ -1772,6 +2152,39 @@ type (str): 元素类型</p>
 <ul>
 <li><strong>target (int):</strong>  需要提醒/呼唤的特定用户的 QQ 号(或者说 id.)</li>
 </ul>
+</div>
+
+
+                            </div>
+                            <div id="At.type" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#At.type">#&nbsp;&nbsp</a>
+
+        <span class="name">type</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>元素类型</p>
+</div>
+
+
+                            </div>
+                            <div id="At.target" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#At.target">#&nbsp;&nbsp</a>
+
+        <span class="name">target</span><span class="annotation">: int</span>
+    </div>
+
+            <div class="docstring"><p>At 的目标 QQ 号</p>
+</div>
+
+
+                            </div>
+                            <div id="At.display" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#At.display">#&nbsp;&nbsp</a>
+
+        <span class="name">display</span><span class="annotation">: Optional[str]</span>
+    </div>
+
+            <div class="docstring"><p>显示名称</p>
 </div>
 
 
@@ -1924,6 +2337,17 @@ type (str): 元素类型</p>
 
 
                             </div>
+                            <div id="AtAll.type" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#AtAll.type">#&nbsp;&nbsp</a>
+
+        <span class="name">type</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>元素类型</p>
+</div>
+
+
+                            </div>
                             <div id="AtAll.asDisplay" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#AtAll.asDisplay">#&nbsp;&nbsp</a>
 
@@ -2027,8 +2451,12 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;表示消息中所附带的表情, 这些表情大多都是聊天工具内置的.&quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Face&quot;</span>
+
     <span class="n">faceId</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;QQ 表情编号, 优先于 name&quot;&quot;&quot;</span>
+
     <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;QQ 表情名称&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="o">...</span><span class="p">:</span>
@@ -2038,7 +2466,7 @@ type (str): 元素类型</p>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[表情:</span><span class="si">{</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">faceId</span><span class="p">}</span><span class="si">}</span><span class="s2">]&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[表情: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">faceId</span><span class="si">}</span><span class="s2">]&quot;</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Face&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Face</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">faceId</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">faceId</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -2076,6 +2504,39 @@ type (str): 元素类型</p>
 
 
                             </div>
+                            <div id="Face.type" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Face.type">#&nbsp;&nbsp</a>
+
+        <span class="name">type</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>元素类型</p>
+</div>
+
+
+                            </div>
+                            <div id="Face.faceId" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Face.faceId">#&nbsp;&nbsp</a>
+
+        <span class="name">faceId</span><span class="annotation">: Optional[int]</span>
+    </div>
+
+            <div class="docstring"><p>QQ 表情编号, 优先于 name</p>
+</div>
+
+
+                            </div>
+                            <div id="Face.name" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Face.name">#&nbsp;&nbsp</a>
+
+        <span class="name">name</span><span class="annotation">: Optional[str]</span>
+    </div>
+
+            <div class="docstring"><p>QQ 表情名称</p>
+</div>
+
+
+                            </div>
                             <div id="Face.asDisplay" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Face.asDisplay">#&nbsp;&nbsp</a>
 
@@ -2087,7 +2548,7 @@ type (str): 元素类型</p>
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[表情:</span><span class="si">{</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">faceId</span><span class="p">}</span><span class="si">}</span><span class="s2">]&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[表情: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">faceId</span><span class="si">}</span><span class="s2">]&quot;</span>
 </pre></div>
 
         </details>
@@ -2148,7 +2609,9 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;表示消息中的 XML 消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Xml&quot;</span>
+
     <span class="n">xml</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;XML文本&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;[XML消息]&quot;</span>
@@ -2160,6 +2623,17 @@ type (str): 元素类型</p>
 </div>
 
 
+                            <div id="Xml.xml" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Xml.xml">#&nbsp;&nbsp</a>
+
+        <span class="name">xml</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>XML文本</p>
+</div>
+
+
+                            </div>
                             <div id="Xml.asDisplay" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Xml.asDisplay">#&nbsp;&nbsp</a>
 
@@ -2206,7 +2680,8 @@ type (str): 元素类型</p>
 
             </div>
             <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="Xml.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
+                                <dd id="Xml.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="Xml.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="Xml.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
@@ -2233,7 +2708,9 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;表示消息中的 JSON 消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Json&quot;</span>
+
     <span class="n">Json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;XML文本&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
@@ -2273,6 +2750,17 @@ type (str): 元素类型</p>
             <div class="docstring"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
 
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+</div>
+
+
+                            </div>
+                            <div id="Json.Json" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Json.Json">#&nbsp;&nbsp</a>
+
+        <span class="name">Json</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>XML文本</p>
 </div>
 
 
@@ -2329,7 +2817,8 @@ type (str): 元素类型</p>
                                 <h5>Inherited Members</h5>
                                 <dl>
                                     <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="Json.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
+                                <dd id="Json.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="Json.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="Json.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
@@ -2369,7 +2858,9 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;表示消息中自带的 App 消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;App&quot;</span>
+
     <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;App 内容&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;[APP消息]&quot;</span>
@@ -2381,6 +2872,17 @@ type (str): 元素类型</p>
 </div>
 
 
+                            <div id="App.content" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#App.content">#&nbsp;&nbsp</a>
+
+        <span class="name">content</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>App 内容</p>
+</div>
+
+
+                            </div>
                             <div id="App.asDisplay" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#App.asDisplay">#&nbsp;&nbsp</a>
 
@@ -2427,7 +2929,8 @@ type (str): 元素类型</p>
 
             </div>
             <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="App.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
+                                <dd id="App.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="App.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="App.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
@@ -2445,30 +2948,61 @@ type (str): 元素类型</p>
 
         
         <span class="def">class</span>
-        <span class="name">PokeMethods</span><wbr>(<span class="base">enum.Enum</span>):
+        <span class="name">PokeMethods</span><wbr>(<span class="base">builtins.str</span>, <span class="base">enum.Enum</span>):
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">PokeMethods</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+            <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">PokeMethods</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;戳一戳可用方法&quot;&quot;&quot;</span>
 
     <span class="n">ChuoYiChuo</span> <span class="o">=</span> <span class="s2">&quot;ChuoYiChuo&quot;</span>
+    <span class="sd">&quot;&quot;&quot;戳一戳&quot;&quot;&quot;</span>
+
     <span class="n">BiXin</span> <span class="o">=</span> <span class="s2">&quot;BiXin&quot;</span>
+    <span class="sd">&quot;&quot;&quot;比心&quot;&quot;&quot;</span>
+
     <span class="n">DianZan</span> <span class="o">=</span> <span class="s2">&quot;DianZan&quot;</span>
+    <span class="sd">&quot;&quot;&quot;点赞&quot;&quot;&quot;</span>
+
     <span class="n">XinSui</span> <span class="o">=</span> <span class="s2">&quot;XinSui&quot;</span>
+    <span class="sd">&quot;&quot;&quot;心碎&quot;&quot;&quot;</span>
+
     <span class="n">LiuLiuLiu</span> <span class="o">=</span> <span class="s2">&quot;LiuLiuLiu&quot;</span>
+    <span class="sd">&quot;&quot;&quot;666&quot;&quot;&quot;</span>
+
     <span class="n">FangDaZhao</span> <span class="o">=</span> <span class="s2">&quot;FangDaZhao&quot;</span>
+    <span class="sd">&quot;&quot;&quot;放大招&quot;&quot;&quot;</span>
+
     <span class="n">BaoBeiQiu</span> <span class="o">=</span> <span class="s2">&quot;BaoBeiQiu&quot;</span>
+    <span class="sd">&quot;&quot;&quot;宝贝球&quot;&quot;&quot;</span>
+
     <span class="n">Rose</span> <span class="o">=</span> <span class="s2">&quot;Rose&quot;</span>
+    <span class="sd">&quot;&quot;&quot;玫瑰花&quot;&quot;&quot;</span>
+
     <span class="n">ZhaoHuanShu</span> <span class="o">=</span> <span class="s2">&quot;ZhaoHuanShu&quot;</span>
+    <span class="sd">&quot;&quot;&quot;召唤术&quot;&quot;&quot;</span>
+
     <span class="n">RangNiPi</span> <span class="o">=</span> <span class="s2">&quot;RangNiPi&quot;</span>
+    <span class="sd">&quot;&quot;&quot;让你皮&quot;&quot;&quot;</span>
+
     <span class="n">JeiYin</span> <span class="o">=</span> <span class="s2">&quot;JeiYin&quot;</span>
+    <span class="sd">&quot;&quot;&quot;结印&quot;&quot;&quot;</span>
+
     <span class="n">ShouLei</span> <span class="o">=</span> <span class="s2">&quot;ShouLei&quot;</span>
+    <span class="sd">&quot;&quot;&quot;手雷&quot;&quot;&quot;</span>
+
     <span class="n">GouYin</span> <span class="o">=</span> <span class="s2">&quot;GouYin&quot;</span>
+    <span class="sd">&quot;&quot;&quot;勾引&quot;&quot;&quot;</span>
+
     <span class="n">ZhuaYiXia</span> <span class="o">=</span> <span class="s2">&quot;ZhuaYiXia&quot;</span>
+    <span class="sd">&quot;&quot;&quot;抓一下&quot;&quot;&quot;</span>
+
     <span class="n">SuiPing</span> <span class="o">=</span> <span class="s2">&quot;SuiPing&quot;</span>
+    <span class="sd">&quot;&quot;&quot;碎屏&quot;&quot;&quot;</span>
+
     <span class="n">QiaoMen</span> <span class="o">=</span> <span class="s2">&quot;QiaoMen&quot;</span>
+    <span class="sd">&quot;&quot;&quot;敲门&quot;&quot;&quot;</span>
 </pre></div>
 
         </details>
@@ -2483,7 +3017,9 @@ type (str): 元素类型</p>
         <span class="name">ChuoYiChuo</span><span class="default_value"> = &lt;<a href="#PokeMethods.ChuoYiChuo">PokeMethods.ChuoYiChuo</a>: &#39;ChuoYiChuo&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>戳一戳</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.BiXin" class="classattr">
@@ -2492,7 +3028,9 @@ type (str): 元素类型</p>
         <span class="name">BiXin</span><span class="default_value"> = &lt;<a href="#PokeMethods.BiXin">PokeMethods.BiXin</a>: &#39;BiXin&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>比心</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.DianZan" class="classattr">
@@ -2501,7 +3039,9 @@ type (str): 元素类型</p>
         <span class="name">DianZan</span><span class="default_value"> = &lt;<a href="#PokeMethods.DianZan">PokeMethods.DianZan</a>: &#39;DianZan&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>点赞</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.XinSui" class="classattr">
@@ -2510,7 +3050,9 @@ type (str): 元素类型</p>
         <span class="name">XinSui</span><span class="default_value"> = &lt;<a href="#PokeMethods.XinSui">PokeMethods.XinSui</a>: &#39;XinSui&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>心碎</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.LiuLiuLiu" class="classattr">
@@ -2519,7 +3061,9 @@ type (str): 元素类型</p>
         <span class="name">LiuLiuLiu</span><span class="default_value"> = &lt;<a href="#PokeMethods.LiuLiuLiu">PokeMethods.LiuLiuLiu</a>: &#39;LiuLiuLiu&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>666</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.FangDaZhao" class="classattr">
@@ -2528,7 +3072,9 @@ type (str): 元素类型</p>
         <span class="name">FangDaZhao</span><span class="default_value"> = &lt;<a href="#PokeMethods.FangDaZhao">PokeMethods.FangDaZhao</a>: &#39;FangDaZhao&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>放大招</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.BaoBeiQiu" class="classattr">
@@ -2537,7 +3083,9 @@ type (str): 元素类型</p>
         <span class="name">BaoBeiQiu</span><span class="default_value"> = &lt;<a href="#PokeMethods.BaoBeiQiu">PokeMethods.BaoBeiQiu</a>: &#39;BaoBeiQiu&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>宝贝球</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.Rose" class="classattr">
@@ -2546,7 +3094,9 @@ type (str): 元素类型</p>
         <span class="name">Rose</span><span class="default_value"> = &lt;<a href="#PokeMethods.Rose">PokeMethods.Rose</a>: &#39;Rose&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>玫瑰花</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.ZhaoHuanShu" class="classattr">
@@ -2555,7 +3105,9 @@ type (str): 元素类型</p>
         <span class="name">ZhaoHuanShu</span><span class="default_value"> = &lt;<a href="#PokeMethods.ZhaoHuanShu">PokeMethods.ZhaoHuanShu</a>: &#39;ZhaoHuanShu&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>召唤术</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.RangNiPi" class="classattr">
@@ -2564,7 +3116,9 @@ type (str): 元素类型</p>
         <span class="name">RangNiPi</span><span class="default_value"> = &lt;<a href="#PokeMethods.RangNiPi">PokeMethods.RangNiPi</a>: &#39;RangNiPi&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>让你皮</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.JeiYin" class="classattr">
@@ -2573,7 +3127,9 @@ type (str): 元素类型</p>
         <span class="name">JeiYin</span><span class="default_value"> = &lt;<a href="#PokeMethods.JeiYin">PokeMethods.JeiYin</a>: &#39;JeiYin&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>结印</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.ShouLei" class="classattr">
@@ -2582,7 +3138,9 @@ type (str): 元素类型</p>
         <span class="name">ShouLei</span><span class="default_value"> = &lt;<a href="#PokeMethods.ShouLei">PokeMethods.ShouLei</a>: &#39;ShouLei&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>手雷</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.GouYin" class="classattr">
@@ -2591,7 +3149,9 @@ type (str): 元素类型</p>
         <span class="name">GouYin</span><span class="default_value"> = &lt;<a href="#PokeMethods.GouYin">PokeMethods.GouYin</a>: &#39;GouYin&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>勾引</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.ZhuaYiXia" class="classattr">
@@ -2600,7 +3160,9 @@ type (str): 元素类型</p>
         <span class="name">ZhuaYiXia</span><span class="default_value"> = &lt;<a href="#PokeMethods.ZhuaYiXia">PokeMethods.ZhuaYiXia</a>: &#39;ZhuaYiXia&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>抓一下</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.SuiPing" class="classattr">
@@ -2609,7 +3171,9 @@ type (str): 元素类型</p>
         <span class="name">SuiPing</span><span class="default_value"> = &lt;<a href="#PokeMethods.SuiPing">PokeMethods.SuiPing</a>: &#39;SuiPing&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>碎屏</p>
+</div>
+
 
                             </div>
                             <div id="PokeMethods.QiaoMen" class="classattr">
@@ -2618,7 +3182,9 @@ type (str): 元素类型</p>
         <span class="name">QiaoMen</span><span class="default_value"> = &lt;<a href="#PokeMethods.QiaoMen">PokeMethods.QiaoMen</a>: &#39;QiaoMen&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>敲门</p>
+</div>
+
 
                             </div>
                             <div class="inherited">
@@ -2627,6 +3193,56 @@ type (str): 元素类型</p>
                                     <div><dt>enum.Enum</dt>
                                 <dd id="PokeMethods.name" class="variable">name</dd>
                 <dd id="PokeMethods.value" class="variable">value</dd>
+
+            </div>
+            <div><dt>builtins.str</dt>
+                                <dd id="PokeMethods.encode" class="function">encode</dd>
+                <dd id="PokeMethods.replace" class="function">replace</dd>
+                <dd id="PokeMethods.split" class="function">split</dd>
+                <dd id="PokeMethods.rsplit" class="function">rsplit</dd>
+                <dd id="PokeMethods.join" class="function">join</dd>
+                <dd id="PokeMethods.capitalize" class="function">capitalize</dd>
+                <dd id="PokeMethods.casefold" class="function">casefold</dd>
+                <dd id="PokeMethods.title" class="function">title</dd>
+                <dd id="PokeMethods.center" class="function">center</dd>
+                <dd id="PokeMethods.count" class="function">count</dd>
+                <dd id="PokeMethods.expandtabs" class="function">expandtabs</dd>
+                <dd id="PokeMethods.find" class="function">find</dd>
+                <dd id="PokeMethods.partition" class="function">partition</dd>
+                <dd id="PokeMethods.index" class="function">index</dd>
+                <dd id="PokeMethods.ljust" class="function">ljust</dd>
+                <dd id="PokeMethods.lower" class="function">lower</dd>
+                <dd id="PokeMethods.lstrip" class="function">lstrip</dd>
+                <dd id="PokeMethods.rfind" class="function">rfind</dd>
+                <dd id="PokeMethods.rindex" class="function">rindex</dd>
+                <dd id="PokeMethods.rjust" class="function">rjust</dd>
+                <dd id="PokeMethods.rstrip" class="function">rstrip</dd>
+                <dd id="PokeMethods.rpartition" class="function">rpartition</dd>
+                <dd id="PokeMethods.splitlines" class="function">splitlines</dd>
+                <dd id="PokeMethods.strip" class="function">strip</dd>
+                <dd id="PokeMethods.swapcase" class="function">swapcase</dd>
+                <dd id="PokeMethods.translate" class="function">translate</dd>
+                <dd id="PokeMethods.upper" class="function">upper</dd>
+                <dd id="PokeMethods.startswith" class="function">startswith</dd>
+                <dd id="PokeMethods.endswith" class="function">endswith</dd>
+                <dd id="PokeMethods.removeprefix" class="function">removeprefix</dd>
+                <dd id="PokeMethods.removesuffix" class="function">removesuffix</dd>
+                <dd id="PokeMethods.isascii" class="function">isascii</dd>
+                <dd id="PokeMethods.islower" class="function">islower</dd>
+                <dd id="PokeMethods.isupper" class="function">isupper</dd>
+                <dd id="PokeMethods.istitle" class="function">istitle</dd>
+                <dd id="PokeMethods.isspace" class="function">isspace</dd>
+                <dd id="PokeMethods.isdecimal" class="function">isdecimal</dd>
+                <dd id="PokeMethods.isdigit" class="function">isdigit</dd>
+                <dd id="PokeMethods.isnumeric" class="function">isnumeric</dd>
+                <dd id="PokeMethods.isalpha" class="function">isalpha</dd>
+                <dd id="PokeMethods.isalnum" class="function">isalnum</dd>
+                <dd id="PokeMethods.isidentifier" class="function">isidentifier</dd>
+                <dd id="PokeMethods.isprintable" class="function">isprintable</dd>
+                <dd id="PokeMethods.zfill" class="function">zfill</dd>
+                <dd id="PokeMethods.format" class="function">format</dd>
+                <dd id="PokeMethods.format_map" class="function">format_map</dd>
+                <dd id="PokeMethods.maketrans" class="function">maketrans</dd>
 
             </div>
                                 </dl>
@@ -2647,7 +3263,9 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;表示消息中戳一戳消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Poke&quot;</span>
+
     <span class="n">name</span><span class="p">:</span> <span class="n">PokeMethods</span>
+    <span class="sd">&quot;&quot;&quot;戳一戳使用的方法&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">PokeMethods</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
@@ -2684,6 +3302,17 @@ type (str): 元素类型</p>
 
 
                             </div>
+                            <div id="Poke.name" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Poke.name">#&nbsp;&nbsp</a>
+
+        <span class="name">name</span><span class="annotation">: <a href="#PokeMethods">ariadne.message.element.PokeMethods</a></span>
+    </div>
+
+            <div class="docstring"><p>戳一戳使用的方法</p>
+</div>
+
+
+                            </div>
                             <div id="Poke.asDisplay" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Poke.asDisplay">#&nbsp;&nbsp</a>
 
@@ -2715,7 +3344,8 @@ type (str): 元素类型</p>
                                 <h5>Inherited Members</h5>
                                 <dl>
                                     <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="Poke.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
+                                <dd id="Poke.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="Poke.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="Poke.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
@@ -2756,7 +3386,9 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;表示消息中骰子消息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Dice&quot;</span>
+
     <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;骰子值&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
@@ -2793,6 +3425,17 @@ type (str): 元素类型</p>
 
 
                             </div>
+                            <div id="Dice.value" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Dice.value">#&nbsp;&nbsp</a>
+
+        <span class="name">value</span><span class="annotation">: int</span>
+    </div>
+
+            <div class="docstring"><p>骰子值</p>
+</div>
+
+
+                            </div>
                             <div id="Dice.asDisplay" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Dice.asDisplay">#&nbsp;&nbsp</a>
 
@@ -2824,7 +3467,8 @@ type (str): 元素类型</p>
                                 <h5>Inherited Members</h5>
                                 <dl>
                                     <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="Dice.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
+                                <dd id="Dice.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="Dice.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="Dice.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
@@ -2929,7 +3573,8 @@ type (str): 元素类型</p>
 
             </div>
             <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="MusicShare.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
+                                <dd id="MusicShare.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="MusicShare.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="MusicShare.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
@@ -2956,10 +3601,19 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;表示合并转发中的一个节点&quot;&quot;&quot;</span>
 
     <span class="n">senderId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;发送者 QQ 号 (决定显示头像)&quot;&quot;&quot;</span>
+
     <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="sd">&quot;&quot;&quot;发送时间&quot;&quot;&quot;</span>
+
     <span class="n">senderName</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;发送者显示名字&quot;&quot;&quot;</span>
+
     <span class="n">messageChain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;MessageChain&quot;</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;发送的消息链&quot;&quot;&quot;</span>
+
     <span class="n">messageId</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;缓存的消息 ID&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -3043,6 +3697,61 @@ type (str): 元素类型</p>
 
 
                             </div>
+                            <div id="ForwardNode.senderId" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#ForwardNode.senderId">#&nbsp;&nbsp</a>
+
+        <span class="name">senderId</span><span class="annotation">: int</span>
+    </div>
+
+            <div class="docstring"><p>发送者 QQ 号 (决定显示头像)</p>
+</div>
+
+
+                            </div>
+                            <div id="ForwardNode.time" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#ForwardNode.time">#&nbsp;&nbsp</a>
+
+        <span class="name">time</span><span class="annotation">: datetime.datetime</span>
+    </div>
+
+            <div class="docstring"><p>发送时间</p>
+</div>
+
+
+                            </div>
+                            <div id="ForwardNode.senderName" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#ForwardNode.senderName">#&nbsp;&nbsp</a>
+
+        <span class="name">senderName</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>发送者显示名字</p>
+</div>
+
+
+                            </div>
+                            <div id="ForwardNode.messageChain" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#ForwardNode.messageChain">#&nbsp;&nbsp</a>
+
+        <span class="name">messageChain</span><span class="annotation">: Optional[<a href="chain.html#MessageChain">ariadne.message.chain.MessageChain</a>]</span>
+    </div>
+
+            <div class="docstring"><p>发送的消息链</p>
+</div>
+
+
+                            </div>
+                            <div id="ForwardNode.messageId" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#ForwardNode.messageId">#&nbsp;&nbsp</a>
+
+        <span class="name">messageId</span><span class="annotation">: Optional[int]</span>
+    </div>
+
+            <div class="docstring"><p>缓存的消息 ID</p>
+</div>
+
+
+                            </div>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
@@ -3087,7 +3796,9 @@ type (str): 元素类型</p>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Forward&quot;</span>
+
     <span class="n">nodeList</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ForwardNode</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;转发节点列表&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="n">ForwardNode</span><span class="p">],</span> <span class="n">ForwardNode</span><span class="p">],</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">nodes</span><span class="p">:</span>
@@ -3144,6 +3855,17 @@ type (str): 元素类型</p>
             <div class="docstring"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
 
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+</div>
+
+
+                            </div>
+                            <div id="Forward.nodeList" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Forward.nodeList">#&nbsp;&nbsp</a>
+
+        <span class="name">nodeList</span><span class="annotation">: List[<a href="#ForwardNode">ariadne.message.element.ForwardNode</a>]</span>
+    </div>
+
+            <div class="docstring"><p>转发节点列表</p>
 </div>
 
 
@@ -3206,7 +3928,8 @@ type (str): 元素类型</p>
                                 <h5>Inherited Members</h5>
                                 <dl>
                                     <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="Forward.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
+                                <dd id="Forward.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="Forward.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
@@ -3246,15 +3969,24 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;指示一个文件信息元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;File&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;文件 ID&quot;&quot;&quot;</span>
+
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;文件名&quot;&quot;&quot;</span>
+
     <span class="n">size</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;文件大小&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[文件:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]&quot;</span>
 
     <span class="k">def</span> <span class="nf">asPersistentString</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotSendableElement</span>
 </pre></div>
 
         </details>
@@ -3263,6 +3995,39 @@ type (str): 元素类型</p>
 </div>
 
 
+                            <div id="File.id" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#File.id">#&nbsp;&nbsp</a>
+
+        <span class="name">id</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>文件 ID</p>
+</div>
+
+
+                            </div>
+                            <div id="File.name" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#File.name">#&nbsp;&nbsp</a>
+
+        <span class="name">name</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>文件名</p>
+</div>
+
+
+                            </div>
+                            <div id="File.size" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#File.size">#&nbsp;&nbsp</a>
+
+        <span class="name">size</span><span class="annotation">: int</span>
+    </div>
+
+            <div class="docstring"><p>文件大小</p>
+</div>
+
+
+                            </div>
                             <div id="File.asDisplay" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#File.asDisplay">#&nbsp;&nbsp</a>
 
@@ -3317,6 +4082,32 @@ type (str): 元素类型</p>
 
 
                             </div>
+                            <div id="File.prepare" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#File.prepare">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">prepare</span><span class="signature">(self) -&gt; None</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotSendableElement</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>为元素被发送进行准备,
+若无异常被引发, 则完成本方法后元素应可被发送.</p>
+
+<p>保留空实现以允许不需要 <code><a href="#File.prepare">prepare</a></code>的元素类型存在.</p>
+
+<p>若本元素设计时便不可被发送, 请引发 <code><a href="#NotSendableElement">NotSendableElement</a></code> 异常.</p>
+</div>
+
+
+                            </div>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
@@ -3336,7 +4127,7 @@ type (str): 元素类型</p>
 
             </div>
             <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="File.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
+                                <dd id="File.type" class="variable"><a href="#Element.type">type</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
@@ -3362,7 +4153,9 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;Mirai 码, 并不建议直接使用. Ariadne 也不会提供互转换接口.&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;MiraiCode&quot;</span>
+
     <span class="n">code</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Mirai Code&quot;&quot;&quot;</span>
 </pre></div>
 
         </details>
@@ -3371,6 +4164,17 @@ type (str): 元素类型</p>
 </div>
 
 
+                            <div id="MiraiCode.code" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MiraiCode.code">#&nbsp;&nbsp</a>
+
+        <span class="name">code</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>Mirai Code</p>
+</div>
+
+
+                            </div>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
@@ -3390,7 +4194,8 @@ type (str): 元素类型</p>
 
             </div>
             <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="MiraiCode.asDisplay" class="function"><a href="#Element.asDisplay">asDisplay</a></dd>
+                                <dd id="MiraiCode.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="MiraiCode.asDisplay" class="function"><a href="#Element.asDisplay">asDisplay</a></dd>
                 <dd id="MiraiCode.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="MiraiCode.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
@@ -3418,9 +4223,16 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;Image 类型的枚举.&quot;&quot;&quot;</span>
 
     <span class="n">Friend</span> <span class="o">=</span> <span class="s2">&quot;Friend&quot;</span>
+    <span class="sd">&quot;&quot;&quot;好友消息&quot;&quot;&quot;</span>
+
     <span class="n">Group</span> <span class="o">=</span> <span class="s2">&quot;Group&quot;</span>
+    <span class="sd">&quot;&quot;&quot;群组消息&quot;&quot;&quot;</span>
+
     <span class="n">Temp</span> <span class="o">=</span> <span class="s2">&quot;Temp&quot;</span>
+    <span class="sd">&quot;&quot;&quot;临时消息&quot;&quot;&quot;</span>
+
     <span class="n">Unknown</span> <span class="o">=</span> <span class="s2">&quot;Unknown&quot;</span>
+    <span class="sd">&quot;&quot;&quot;未知消息&quot;&quot;&quot;</span>
 </pre></div>
 
         </details>
@@ -3435,7 +4247,9 @@ type (str): 元素类型</p>
         <span class="name">Friend</span><span class="default_value"> = &lt;<a href="#ImageType.Friend">ImageType.Friend</a>: &#39;Friend&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>好友消息</p>
+</div>
+
 
                             </div>
                             <div id="ImageType.Group" class="classattr">
@@ -3444,7 +4258,9 @@ type (str): 元素类型</p>
         <span class="name">Group</span><span class="default_value"> = &lt;<a href="#ImageType.Group">ImageType.Group</a>: &#39;Group&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>群组消息</p>
+</div>
+
 
                             </div>
                             <div id="ImageType.Temp" class="classattr">
@@ -3453,7 +4269,9 @@ type (str): 元素类型</p>
         <span class="name">Temp</span><span class="default_value"> = &lt;<a href="#ImageType.Temp">ImageType.Temp</a>: &#39;Temp&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>临时消息</p>
+</div>
+
 
                             </div>
                             <div id="ImageType.Unknown" class="classattr">
@@ -3462,7 +4280,9 @@ type (str): 元素类型</p>
         <span class="name">Unknown</span><span class="default_value"> = &lt;<a href="#ImageType.Unknown">ImageType.Unknown</a>: &#39;Unknown&#39;&gt;</span>
     </div>
 
-    
+            <div class="docstring"><p>未知消息</p>
+</div>
+
 
                             </div>
                             <div class="inherited">
@@ -3491,8 +4311,13 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;指示多媒体消息元素.&quot;&quot;&quot;</span>
 
     <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;元素 ID&quot;&quot;&quot;</span>
+
     <span class="n">url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;元素的下载 url&quot;&quot;&quot;</span>
+
     <span class="n">base64</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;元素的 base64&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -3569,7 +4394,7 @@ type (str): 元素类型</p>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;返回多媒体元素的 uuid, 即元素在 mirai 内部的标识&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;多媒体元素的 uuid, 即元素在 mirai 内部的标识&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span>
@@ -3649,6 +4474,39 @@ type (str): 元素类型</p>
             <div class="docstring"><p>Create a new model by parsing and validating input data from keyword arguments.</p>
 
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+</div>
+
+
+                            </div>
+                            <div id="MultimediaElement.id" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MultimediaElement.id">#&nbsp;&nbsp</a>
+
+        <span class="name">id</span><span class="annotation">: Optional[str]</span>
+    </div>
+
+            <div class="docstring"><p>元素 ID</p>
+</div>
+
+
+                            </div>
+                            <div id="MultimediaElement.url" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MultimediaElement.url">#&nbsp;&nbsp</a>
+
+        <span class="name">url</span><span class="annotation">: Optional[str]</span>
+    </div>
+
+            <div class="docstring"><p>元素的下载 url</p>
+</div>
+
+
+                            </div>
+                            <div id="MultimediaElement.base64" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MultimediaElement.base64">#&nbsp;&nbsp</a>
+
+        <span class="name">base64</span><span class="annotation">: Optional[str]</span>
+    </div>
+
+            <div class="docstring"><p>元素的 base64</p>
 </div>
 
 
@@ -3752,7 +4610,7 @@ type (str): 元素类型</p>
         <span class="name">uuid</span>
     </div>
 
-            <div class="docstring"><p>返回多媒体元素的 uuid, 即元素在 mirai 内部的标识</p>
+            <div class="docstring"><p>多媒体元素的 uuid, 即元素在 mirai 内部的标识</p>
 </div>
 
 
@@ -3761,7 +4619,8 @@ type (str): 元素类型</p>
                                 <h5>Inherited Members</h5>
                                 <dl>
                                     <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="MultimediaElement.asDisplay" class="function"><a href="#Element.asDisplay">asDisplay</a></dd>
+                                <dd id="MultimediaElement.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="MultimediaElement.asDisplay" class="function"><a href="#Element.asDisplay">asDisplay</a></dd>
                 <dd id="MultimediaElement.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="MultimediaElement.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
@@ -3803,6 +4662,7 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;指示消息中的图片元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Image&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;imageId&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">toFlashImage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FlashImage&quot;</span><span class="p">:</span>
@@ -3832,6 +4692,17 @@ type (str): 元素类型</p>
 </div>
 
 
+                            <div id="Image.id" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Image.id">#&nbsp;&nbsp</a>
+
+        <span class="name">id</span><span class="annotation">: Optional[str]</span>
+    </div>
+
+            <div class="docstring"><p>元素 ID</p>
+</div>
+
+
+                            </div>
                             <div id="Image.toFlashImage" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Image.toFlashImage">#&nbsp;&nbsp</a>
 
@@ -3933,13 +4804,16 @@ type (str): 元素类型</p>
                                 <dl>
                                     <div><dt><a href="#MultimediaElement">MultimediaElement</a></dt>
                                 <dd id="Image.__init__" class="function"><a href="#MultimediaElement.__init__">MultimediaElement</a></dd>
+                <dd id="Image.url" class="variable"><a href="#MultimediaElement.url">url</a></dd>
+                <dd id="Image.base64" class="variable"><a href="#MultimediaElement.base64">base64</a></dd>
                 <dd id="Image.get_bytes" class="function"><a href="#MultimediaElement.get_bytes">get_bytes</a></dd>
                 <dd id="Image.asNoBinaryPersistentString" class="function"><a href="#MultimediaElement.asNoBinaryPersistentString">asNoBinaryPersistentString</a></dd>
                 <dd id="Image.uuid" class="variable"><a href="#MultimediaElement.uuid">uuid</a></dd>
 
             </div>
             <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="Image.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
+                                <dd id="Image.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="Image.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="Image.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
@@ -4109,19 +4983,23 @@ type (str): 元素类型</p>
                                 <dl>
                                     <div><dt><a href="#MultimediaElement">MultimediaElement</a></dt>
                                 <dd id="FlashImage.__init__" class="function"><a href="#MultimediaElement.__init__">MultimediaElement</a></dd>
+                <dd id="FlashImage.url" class="variable"><a href="#MultimediaElement.url">url</a></dd>
+                <dd id="FlashImage.base64" class="variable"><a href="#MultimediaElement.base64">base64</a></dd>
                 <dd id="FlashImage.get_bytes" class="function"><a href="#MultimediaElement.get_bytes">get_bytes</a></dd>
                 <dd id="FlashImage.asNoBinaryPersistentString" class="function"><a href="#MultimediaElement.asNoBinaryPersistentString">asNoBinaryPersistentString</a></dd>
                 <dd id="FlashImage.uuid" class="variable"><a href="#MultimediaElement.uuid">uuid</a></dd>
 
             </div>
-            <div><dt><a href="#Image">Image</a></dt>
-                                <dd id="FlashImage.toFlashImage" class="function"><a href="#Image.toFlashImage">toFlashImage</a></dd>
-                <dd id="FlashImage.fromFlashImage" class="function"><a href="#Image.fromFlashImage">fromFlashImage</a></dd>
+            <div><dt><a href="#Element">Element</a></dt>
+                                <dd id="FlashImage.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="FlashImage.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
+                <dd id="FlashImage.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
-            <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="FlashImage.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
-                <dd id="FlashImage.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
+            <div><dt><a href="#Image">Image</a></dt>
+                                <dd id="FlashImage.id" class="variable"><a href="#Image.id">id</a></dd>
+                <dd id="FlashImage.toFlashImage" class="function"><a href="#Image.toFlashImage">toFlashImage</a></dd>
+                <dd id="FlashImage.fromFlashImage" class="function"><a href="#Image.fromFlashImage">fromFlashImage</a></dd>
 
             </div>
             <div><dt><a href="../model.html#AriadneBaseModel">ariadne.model.AriadneBaseModel</a></dt>
@@ -4161,8 +5039,11 @@ type (str): 元素类型</p>
     <span class="sd">&quot;&quot;&quot;指示消息中的语音元素&quot;&quot;&quot;</span>
 
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Voice&quot;</span>
+
     <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;voiceId&quot;</span><span class="p">)</span>
+
     <span class="n">length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;语音长度&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">asDisplay</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;[语音]&quot;</span>
@@ -4174,6 +5055,28 @@ type (str): 元素类型</p>
 </div>
 
 
+                            <div id="Voice.id" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Voice.id">#&nbsp;&nbsp</a>
+
+        <span class="name">id</span><span class="annotation">: Optional[str]</span>
+    </div>
+
+            <div class="docstring"><p>元素 ID</p>
+</div>
+
+
+                            </div>
+                            <div id="Voice.length" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Voice.length">#&nbsp;&nbsp</a>
+
+        <span class="name">length</span><span class="annotation">: Optional[int]</span>
+    </div>
+
+            <div class="docstring"><p>语音长度</p>
+</div>
+
+
+                            </div>
                             <div id="Voice.asDisplay" class="classattr">
                                         <div class="attr function"><a class="headerlink" href="#Voice.asDisplay">#&nbsp;&nbsp</a>
 
@@ -4206,13 +5109,16 @@ type (str): 元素类型</p>
                                 <dl>
                                     <div><dt><a href="#MultimediaElement">MultimediaElement</a></dt>
                                 <dd id="Voice.__init__" class="function"><a href="#MultimediaElement.__init__">MultimediaElement</a></dd>
+                <dd id="Voice.url" class="variable"><a href="#MultimediaElement.url">url</a></dd>
+                <dd id="Voice.base64" class="variable"><a href="#MultimediaElement.base64">base64</a></dd>
                 <dd id="Voice.get_bytes" class="function"><a href="#MultimediaElement.get_bytes">get_bytes</a></dd>
                 <dd id="Voice.asNoBinaryPersistentString" class="function"><a href="#MultimediaElement.asNoBinaryPersistentString">asNoBinaryPersistentString</a></dd>
                 <dd id="Voice.uuid" class="variable"><a href="#MultimediaElement.uuid">uuid</a></dd>
 
             </div>
             <div><dt><a href="#Element">Element</a></dt>
-                                <dd id="Voice.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
+                                <dd id="Voice.type" class="variable"><a href="#Element.type">type</a></dd>
+                <dd id="Voice.asPersistentString" class="function"><a href="#Element.asPersistentString">asPersistentString</a></dd>
                 <dd id="Voice.prepare" class="function"><a href="#Element.prepare">prepare</a></dd>
 
             </div>
@@ -4341,10 +5247,20 @@ type (str): 元素类型</p>
                 let heading;
                 switch (result.doc.type) {
                     case "function":
-                        heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span><span class="signature">(${doc.parameters.join(", ")})</span>`;
+                        heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span><span class="signature">${doc.signature}:</span>`;
                         break;
                     case "class":
                         heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;
+                        if (doc.bases)
+                            heading += `<wbr>(<span class="base">${doc.bases}</span>)`;
+                        heading += `:`;
+                        break;
+                    case "variable":
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        if (doc.annotation)
+                            heading += `<span class="annotation">${doc.annotation}</span>`;
+                        if (doc.default_value)
+                            heading += `<span class="default_value">${doc.default_value}</span>`;
                         break;
                     default:
                         heading = `<span class="name">${doc.fullname}</span>`;
