@@ -209,7 +209,6 @@
 <span class="kn">from</span> <span class="nn">yarl</span> <span class="kn">import</span> <span class="n">URL</span>
 
 <span class="kn">from</span> <span class="nn">.event</span> <span class="kn">import</span> <span class="n">MiraiEvent</span>
-<span class="kn">from</span> <span class="nn">.event.network</span> <span class="kn">import</span> <span class="n">RemoteException</span>
 <span class="kn">from</span> <span class="nn">.exception</span> <span class="kn">import</span> <span class="n">InvalidArgument</span><span class="p">,</span> <span class="n">InvalidSession</span><span class="p">,</span> <span class="n">NotSupportedAction</span>
 <span class="kn">from</span> <span class="nn">.model</span> <span class="kn">import</span> <span class="n">CallMethod</span><span class="p">,</span> <span class="n">DatetimeEncoder</span><span class="p">,</span> <span class="n">MiraiSession</span>
 <span class="kn">from</span> <span class="nn">.typing</span> <span class="kn">import</span> <span class="n">P</span><span class="p">,</span> <span class="n">R</span>
@@ -262,8 +261,7 @@
                 <span class="k">raise</span> <span class="n">NotSupportedAction</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">network_action_callable</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: this action not supported&quot;</span>
                 <span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
-            <span class="k">except</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">web_exceptions</span><span class="o">.</span><span class="n">HTTPInternalServerError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">RemoteException</span><span class="p">(</span><span class="o">*</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">web_exceptions</span><span class="o">.</span><span class="n">HTTPInternalServerError</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;An exception has thrown by remote, please check the console!&quot;</span><span class="p">)</span>
                 <span class="k">raise</span>
             <span class="k">except</span> <span class="p">(</span>
@@ -504,8 +502,10 @@
             <span class="k">if</span> <span class="n">sync_id</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">allocated</span><span class="p">:</span>
                 <span class="bp">cls</span><span class="o">.</span><span class="n">allocated</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">sync_id</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">broadcast</span><span class="p">:</span> <span class="n">Broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">:</span> <span class="n">MiraiSession</span><span class="p">,</span> <span class="n">ping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">broadcast</span><span class="p">:</span> <span class="n">Broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">:</span> <span class="n">MiraiSession</span><span class="p">,</span> <span class="n">ping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ping</span> <span class="o">=</span> <span class="n">ping</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ping_task</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ws_conn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ClientWebSocketResponse</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -809,8 +809,7 @@
                 <span class="k">raise</span> <span class="n">NotSupportedAction</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">network_action_callable</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: this action not supported&quot;</span>
                 <span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
-            <span class="k">except</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">web_exceptions</span><span class="o">.</span><span class="n">HTTPInternalServerError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">broadcast</span><span class="o">.</span><span class="n">postEvent</span><span class="p">(</span><span class="n">RemoteException</span><span class="p">(</span><span class="o">*</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">web_exceptions</span><span class="o">.</span><span class="n">HTTPInternalServerError</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;An exception has thrown by remote, please check the console!&quot;</span><span class="p">)</span>
                 <span class="k">raise</span>
             <span class="k">except</span> <span class="p">(</span>
@@ -1505,8 +1504,10 @@ Note: Working In Progress</p>
             <span class="k">if</span> <span class="n">sync_id</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">allocated</span><span class="p">:</span>
                 <span class="bp">cls</span><span class="o">.</span><span class="n">allocated</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">sync_id</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">broadcast</span><span class="p">:</span> <span class="n">Broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">:</span> <span class="n">MiraiSession</span><span class="p">,</span> <span class="n">ping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">broadcast</span><span class="p">:</span> <span class="n">Broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">:</span> <span class="n">MiraiSession</span><span class="p">,</span> <span class="n">ping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ping</span> <span class="o">=</span> <span class="n">ping</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ping_task</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ws_conn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ClientWebSocketResponse</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1653,14 +1654,17 @@ Note: Working In Progress</p>
             <span class="name">WebsocketAdapter</span><span class="signature">(
     broadcast: graia.broadcast.Broadcast,
     mirai_session: <a href="model.html#MiraiSession">ariadne.model.MiraiSession</a>,
-    ping: bool = True
+    ping: bool = True,
+    log: bool = False
 )</span>
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">broadcast</span><span class="p">:</span> <span class="n">Broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">:</span> <span class="n">MiraiSession</span><span class="p">,</span> <span class="n">ping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">)</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">broadcast</span><span class="p">:</span> <span class="n">Broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">:</span> <span class="n">MiraiSession</span><span class="p">,</span> <span class="n">ping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">broadcast</span><span class="p">,</span> <span class="n">mirai_session</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ping</span> <span class="o">=</span> <span class="n">ping</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ping_task</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ws_conn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ClientWebSocketResponse</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
