@@ -330,7 +330,7 @@
 <span class="sd">            bool: 判断结果</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">Plain</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">__root__</span>
+            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">findSubChain</span><span class="p">(</span><span class="n">MessageChain</span><span class="p">([</span><span class="n">Plain</span><span class="p">(</span><span class="n">item</span><span class="p">)],</span> <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Element</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">__root__</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
@@ -985,12 +985,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__root__</span> <span class="o">=</span> <span class="n">elements</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chains</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="s2">&quot;MessageChain&quot;</span><span class="p">],</span> <span class="n">merge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;MessageChain&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chains</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="s2">&quot;MessageChain&quot;</span><span class="p">],</span> <span class="n">merge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;MessageChain&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;将多个消息链连接起来, 并在其中插入自身.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            chains (Iterable[MessageChain]): 要连接的消息链.</span>
-<span class="sd">            merge (bool, optional): 是否合并消息链文本, 默认为 False.</span>
+<span class="sd">            merge (bool, optional): 是否合并消息链文本, 默认为 True.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            MessageChain: 连接后的消息链.</span>
@@ -1055,7 +1055,7 @@
                 <section id="ELEMENT_MAPPING">
                                 <div class="attr variable"><a class="headerlink" href="#ELEMENT_MAPPING">#&nbsp;&nbsp</a>
 
-        <span class="name">ELEMENT_MAPPING</span><span class="annotation">: Dict[str, Type[<a href="element.html#Element">ariadne.message.element.Element</a>]]</span><span class="default_value"> = {None: &lt;class &#39;<a href="element.html#MultimediaElement">ariadne.message.element.MultimediaElement</a>&#39;&gt;, &#39;Plain&#39;: &lt;class &#39;<a href="element.html#Plain">ariadne.message.element.Plain</a>&#39;&gt;, &#39;Source&#39;: &lt;class &#39;<a href="element.html#Source">ariadne.message.element.Source</a>&#39;&gt;, &#39;Quote&#39;: &lt;class &#39;<a href="element.html#Quote">ariadne.message.element.Quote</a>&#39;&gt;, &#39;At&#39;: &lt;class &#39;<a href="element.html#At">ariadne.message.element.At</a>&#39;&gt;, &#39;AtAll&#39;: &lt;class &#39;<a href="element.html#AtAll">ariadne.message.element.AtAll</a>&#39;&gt;, &#39;Face&#39;: &lt;class &#39;<a href="element.html#Face">ariadne.message.element.Face</a>&#39;&gt;, &#39;Xml&#39;: &lt;class &#39;<a href="element.html#Xml">ariadne.message.element.Xml</a>&#39;&gt;, &#39;Json&#39;: &lt;class &#39;<a href="element.html#Json">ariadne.message.element.Json</a>&#39;&gt;, &#39;App&#39;: &lt;class &#39;<a href="element.html#App">ariadne.message.element.App</a>&#39;&gt;, &#39;Poke&#39;: &lt;class &#39;<a href="element.html#Poke">ariadne.message.element.Poke</a>&#39;&gt;, &#39;Dice&#39;: &lt;class &#39;<a href="element.html#Dice">ariadne.message.element.Dice</a>&#39;&gt;, &#39;MusicShare&#39;: &lt;class &#39;<a href="element.html#MusicShare">ariadne.message.element.MusicShare</a>&#39;&gt;, &#39;Forward&#39;: &lt;class &#39;<a href="element.html#Forward">ariadne.message.element.Forward</a>&#39;&gt;, &#39;File&#39;: &lt;class &#39;<a href="element.html#File">ariadne.message.element.File</a>&#39;&gt;, &#39;MiraiCode&#39;: &lt;class &#39;<a href="element.html#MiraiCode">ariadne.message.element.MiraiCode</a>&#39;&gt;, &#39;Image&#39;: &lt;class &#39;<a href="element.html#Image">ariadne.message.element.Image</a>&#39;&gt;, &#39;FlashImage&#39;: &lt;class &#39;<a href="element.html#FlashImage">ariadne.message.element.FlashImage</a>&#39;&gt;, &#39;Voice&#39;: &lt;class &#39;<a href="element.html#Voice">ariadne.message.element.Voice</a>&#39;&gt;}</span>
+        <span class="name">ELEMENT_MAPPING</span><span class="annotation">: Dict[str, Type[<a href="element.html#Element">ariadne.message.element.Element</a>]]</span><span class="default_value"> = {None: &lt;class &#39;<a href="element.html#MultimediaElement">ariadne.message.element.MultimediaElement</a>&#39;&gt;, &#39;Plain&#39;: &lt;class &#39;<a href="element.html#Plain">ariadne.message.element.Plain</a>&#39;&gt;, &#39;Source&#39;: &lt;class &#39;<a href="element.html#Source">ariadne.message.element.Source</a>&#39;&gt;, &#39;Quote&#39;: &lt;class &#39;<a href="element.html#Quote">ariadne.message.element.Quote</a>&#39;&gt;, &#39;At&#39;: &lt;class &#39;<a href="element.html#At">ariadne.message.element.At</a>&#39;&gt;, &#39;AtAll&#39;: &lt;class &#39;<a href="element.html#AtAll">ariadne.message.element.AtAll</a>&#39;&gt;, &#39;Face&#39;: &lt;class &#39;<a href="element.html#Face">ariadne.message.element.Face</a>&#39;&gt;, &#39;MarketFace&#39;: &lt;class &#39;<a href="element.html#MarketFace">ariadne.message.element.MarketFace</a>&#39;&gt;, &#39;Xml&#39;: &lt;class &#39;<a href="element.html#Xml">ariadne.message.element.Xml</a>&#39;&gt;, &#39;Json&#39;: &lt;class &#39;<a href="element.html#Json">ariadne.message.element.Json</a>&#39;&gt;, &#39;App&#39;: &lt;class &#39;<a href="element.html#App">ariadne.message.element.App</a>&#39;&gt;, &#39;Poke&#39;: &lt;class &#39;<a href="element.html#Poke">ariadne.message.element.Poke</a>&#39;&gt;, &#39;Dice&#39;: &lt;class &#39;<a href="element.html#Dice">ariadne.message.element.Dice</a>&#39;&gt;, &#39;MusicShare&#39;: &lt;class &#39;<a href="element.html#MusicShare">ariadne.message.element.MusicShare</a>&#39;&gt;, &#39;Forward&#39;: &lt;class &#39;<a href="element.html#Forward">ariadne.message.element.Forward</a>&#39;&gt;, &#39;File&#39;: &lt;class &#39;<a href="element.html#File">ariadne.message.element.File</a>&#39;&gt;, &#39;MiraiCode&#39;: &lt;class &#39;<a href="element.html#MiraiCode">ariadne.message.element.MiraiCode</a>&#39;&gt;, &#39;Image&#39;: &lt;class &#39;<a href="element.html#Image">ariadne.message.element.Image</a>&#39;&gt;, &#39;FlashImage&#39;: &lt;class &#39;<a href="element.html#FlashImage">ariadne.message.element.FlashImage</a>&#39;&gt;, &#39;Voice&#39;: &lt;class &#39;<a href="element.html#Voice">ariadne.message.element.Voice</a>&#39;&gt;}</span>
     </div>
 
     
@@ -1191,7 +1191,7 @@
 <span class="sd">            bool: 判断结果</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">Plain</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">__root__</span>
+            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">findSubChain</span><span class="p">(</span><span class="n">MessageChain</span><span class="p">([</span><span class="n">Plain</span><span class="p">(</span><span class="n">item</span><span class="p">)],</span> <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Element</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">__root__</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
@@ -1846,12 +1846,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__root__</span> <span class="o">=</span> <span class="n">elements</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chains</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="s2">&quot;MessageChain&quot;</span><span class="p">],</span> <span class="n">merge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;MessageChain&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chains</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="s2">&quot;MessageChain&quot;</span><span class="p">],</span> <span class="n">merge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;MessageChain&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;将多个消息链连接起来, 并在其中插入自身.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            chains (Iterable[MessageChain]): 要连接的消息链.</span>
-<span class="sd">            merge (bool, optional): 是否合并消息链文本, 默认为 False.</span>
+<span class="sd">            merge (bool, optional): 是否合并消息链文本, 默认为 True.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            MessageChain: 连接后的消息链.</span>
@@ -2216,7 +2216,7 @@
 <span class="sd">            bool: 判断结果</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">Plain</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">__root__</span>
+            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">findSubChain</span><span class="p">(</span><span class="n">MessageChain</span><span class="p">([</span><span class="n">Plain</span><span class="p">(</span><span class="n">item</span><span class="p">)],</span> <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Element</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">__root__</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
@@ -3624,18 +3624,18 @@
             <span class="name">join</span><span class="signature">(
     self,
     chains: Iterable[<a href="#MessageChain">ariadne.message.chain.MessageChain</a>],
-    merge: bool = False
+    merge: bool = True
 ) -&gt; <a href="#MessageChain">ariadne.message.chain.MessageChain</a></span>:
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chains</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="s2">&quot;MessageChain&quot;</span><span class="p">],</span> <span class="n">merge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;MessageChain&quot;</span><span class="p">:</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chains</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="s2">&quot;MessageChain&quot;</span><span class="p">],</span> <span class="n">merge</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;MessageChain&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;将多个消息链连接起来, 并在其中插入自身.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            chains (Iterable[MessageChain]): 要连接的消息链.</span>
-<span class="sd">            merge (bool, optional): 是否合并消息链文本, 默认为 False.</span>
+<span class="sd">            merge (bool, optional): 是否合并消息链文本, 默认为 True.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            MessageChain: 连接后的消息链.</span>
@@ -3656,7 +3656,7 @@
 
 <ul>
 <li><strong>chains (Iterable[MessageChain]):</strong>  要连接的消息链.</li>
-<li><strong>merge (bool, optional):</strong>  是否合并消息链文本, 默认为 False.</li>
+<li><strong>merge (bool, optional):</strong>  是否合并消息链文本, 默认为 True.</li>
 </ul>
 
 <h6 id="returns">Returns</h6>
